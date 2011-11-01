@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <context-param>
+        <param-name>com.neptuo.service.io.RootName</param-name>
+        <param-value>carshare</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.neptuo.service.io.UrlResolver</param-name>
+        <param-value>UrlOnly</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.neptuo.service.MethodParamsProviderInitializer</param-name>
+        <param-value>com.carshare.service.DefaultMethodParamsProviderInitializer</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.neptuo.service.ServiceClassInitializer</param-name>
+        <param-value>com.carshare.service.DefaultServiceClassInitializer</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>ServiceDispatcher</servlet-name>
+        <servlet-class>com.neptuo.service.ServiceDispatcher</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServiceDispatcher</servlet-name>
+        <url-pattern>/service/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

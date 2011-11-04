@@ -3,22 +3,20 @@
  * and open the template in the editor.
  */
 
-package com.carshare.service;
+package com.carshare.service.impl;
 
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.servlet.http.*;
+import com.carshare.domain.dto.*;
+import com.carshare.service.storage.*;
+import com.carshare.service.util.*;
+import com.carshare.service.validation.*;
 import com.neptuo.service.*;
 import com.neptuo.service.annotation.*;
 import com.neptuo.service.result.*;
-import com.carshare.domain.dto.*;
-import com.carshare.service.annotation.AuthToken;
-import com.carshare.service.storage.UserEntity;
-import com.carshare.service.storage.UserLogEntity;
-import com.carshare.service.util.*;
-import com.carshare.service.validation.*;
 
 /**
  *
@@ -52,37 +50,14 @@ public class AccountService {
     }
 
     @ServiceMethod(name="info")
-    public EntityResult<User> info(EntityManager em, @AuthToken String token, HttpServletRequest request) throws HttpException {
-        List<UserLogEntity> results = (List<UserLogEntity>) em
-                .createQuery("select ul from UserLogEntity ul where ul.authToken = :authToken and ul.logoutTime is null")
-                .setParameter("authToken", token)
-                .setMaxResults(1)
-                .getResultList();
-
-        if(results.isEmpty()) {
-            throw new HttpUnauthorizedException();
-        }
-
-        UserEntity entity = em.find(UserEntity.class, results.get(0).getUserId());
-        em.close();
-        return new EntityResult<User>(entity.asUser());
+    public EntityResult<User> info(UserEntity user) throws HttpException {
+        return new EntityResult<User>(user.asUser());
     }
 
     @ServiceMethod(name="logout")
-    public void logout(EntityManager em, @AuthToken String token, HttpServletRequest request) throws HttpException {
-        List<UserLogEntity> results = (List<UserLogEntity>) em
-                .createQuery("select ul from UserLogEntity ul where ul.authToken = :authToken")
-                .setParameter("authToken", token)
-                .setMaxResults(1)
-                .getResultList();
-
-        if(results.isEmpty()) {
-            throw new HttpUnauthorizedException();
-        }
-
-        UserLogEntity entity = results.get(0);
-        entity.setLogoutTime(new Date());
-        em.persist(entity);
+    public void logout(EntityManager em, UserLogEntity log) throws HttpException {
+        log.setLogoutTime(new Date());
+        em.persist(log);
         em.close();
     }
 

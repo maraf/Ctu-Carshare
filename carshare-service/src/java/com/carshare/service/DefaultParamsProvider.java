@@ -10,10 +10,13 @@ import javax.servlet.http.*;
 import com.carshare.service.util.*;
 import com.carshare.service.annotation.*;
 import com.carshare.service.storage.EntityManagerFactory;
+import com.carshare.service.storage.UserEntity;
+import com.carshare.service.storage.UserLogEntity;
 import com.neptuo.service.*;
 import com.neptuo.service.annotation.*;
 import com.neptuo.service.io.*;
 import com.neptuo.service.util.*;
+import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
@@ -57,11 +60,21 @@ public class DefaultParamsProvider {
     public ParamsProviderResult provide(Class clazz, MethodInfo method, int index) throws HttpUnauthorizedException {
         this.method = method;
 
+        EntityManager em = null;
         Object result = null;
         boolean handled = false;
 
         if (clazz == EntityManager.class) {
-            result = EntityManagerFactory.create();
+            if(em == null) {
+                em = EntityManagerFactory.create();
+            }
+            result = em;
+            handled = true;
+        } else if (clazz == UserEntity.class) {
+            result = getCurrentUser();
+            handled = true;
+        } else if (clazz == UserLogEntity.class) {
+            result = getCurrentUserLog();
             handled = true;
         } else {
             if(ReflectionHelper.getParamAnnotation(method.getMethod(), index, AuthToken.class) != null) {
@@ -79,5 +92,38 @@ public class DefaultParamsProvider {
 
     public String getAuthToken() {
         return RequestHelper.getAuthToken(request);
+    }
+
+    public UserEntity getCurrentUser() throws HttpUnauthorizedException {
+        EntityManager em = EntityManagerFactory.create();
+
+        List<UserLogEntity> results = (List<UserLogEntity>) em
+                .createQuery("select ul from UserLogEntity ul where ul.authToken = :authToken and ul.logoutTime is null")
+                .setParameter("authToken", getAuthToken())
+                .setMaxResults(1)
+                .getResultList();
+
+        if(results.isEmpty()) {
+            throw new HttpUnauthorizedException();
+        }
+
+        UserEntity entity = em.find(UserEntity.class, results.get(0).getUserId());
+        return entity;
+    }
+
+    public UserLogEntity getCurrentUserLog() throws HttpUnauthorizedException {
+        EntityManager em = EntityManagerFactory.create();
+
+        List<UserLogEntity> results = (List<UserLogEntity>) em
+                .createQuery("select ul from UserLogEntity ul where ul.authToken = :authToken and ul.logoutTime is null")
+                .setParameter("authToken", getAuthToken())
+                .setMaxResults(1)
+                .getResultList();
+
+        if(results.isEmpty()) {
+            throw new HttpUnauthorizedException();
+        }
+
+        return results.get(0);
     }
 }

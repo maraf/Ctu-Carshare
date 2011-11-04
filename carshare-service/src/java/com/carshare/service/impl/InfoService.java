@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.carshare.service;
+package com.carshare.service.impl;
 
 import com.carshare.service.dto.AppInfo;
 import com.neptuo.service.HttpMethodType;

@@ -17,7 +17,12 @@ import javax.servlet.ServletContext;
 public class DefaultMethodParamsProviderInitializer implements MethodParamsProviderInitializer {
 
     public Collection<Class<?>> getProviderClasses(ServletContext context) {
-        return new ArrayList<Class<?>>();
+        Collection<Class<?>> result = new ArrayList<Class<?>>();
+
+        result.add(HttpParamsProvider.class);
+        result.add(DefaultParamsProvider.class);
+
+        return result;
     }
 
 }

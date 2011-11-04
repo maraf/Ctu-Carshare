@@ -1,0 +1,80 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>test-service</title>
+        <script type="text/javascript" src="http://samples.localhost/jquery/jquery-1.5.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        Url: <input type="text" id="url" value="/service/account/login" style="width: 255px" />
+        Accept: <select id="format" style="width: 50px">
+            <option value="application/json">json</option>
+            <option value="application/xml">xml</option>
+        </select>
+        AuthToken: <input type="text" id="authToken" value="" style="width: 100px" />
+        <button id="button">Send request!</button>
+        <br />
+        <textarea id="params" style="width: 700px; height: 200px;"></textarea>
+        <hr />
+        Actions:
+        <br />
+        <button id="login">Login</button>
+        <button id="userInfo">User info</button>
+        <button id="logout">Logout</button>
+        <button id="register">Register</button>
+        
+
+        <p id="p"></p>
+
+        <script type="text/javascript">
+
+$('#button').click(function() {
+    $.ajax({
+        type: 'POST',
+        url: $('#url').val(),
+        data: $('#params').val(),
+        cache: false,
+        beforeSend: function(xmlHttpRequest) {
+          xmlHttpRequest.setRequestHeader('Accept', $('#format').val());
+          var token = $('#authToken').val();
+          if(token != "") {
+            xmlHttpRequest.setRequestHeader('AuthToken', token);
+          }
+        },
+        success: function(data) {
+            console.log(eval(data));
+        }
+    });
+});
+
+$("#login").click(function() {
+  $("#params").val("<user-login>\n  <phone-number>606111222</phone-number>\n  <password>doe</password>\n</user-login>");
+    $("#url").val("/service/account/login");
+    $("#method").val("");
+});
+$("#userInfo").click(function() {
+    $("#params").val("");
+    $("#url").val("/service/account/info");
+    $("#method").val("");
+});
+$("#logout").click(function() {
+    $("#params").val("");
+    $("#url").val("/service/account/logout");
+    $("#method").val("");
+});
+$("#register").click(function() {
+    $("#params").val("<user-update>\n  <phone-number>606111222</phone-number>\n  <password>doe</password>\n  <email>john@doe.eu</email>\n  <firstname>John</firstname>\n  <lastname>Doe</lastname>\n  <address>Dlouhá 5, Strakonice</address>\n  <car-description>Bíla škoda 120</car-description>\n  <registrated>2011-11-04</registrated>\n</user-update>");
+    $("#url").val("/service/account/register");
+    $("#method").val("");
+});
+
+        </script>
+    </body>
+</html>
+
+

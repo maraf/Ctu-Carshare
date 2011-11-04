@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user-update>
+    <username>john.doe</username>
+    <password>doe</password>
+    <email>john@doe.eu</email>
+    <firstname>John</firstname>
+    <lastname>Doe</lastname>
+    <phone-number>606111222</phone-number>
+    <address>Dlouhá 5, Strakonice</address>
+    <car-description>Bíla škoda 120</car-description>
+    <registrated>2011-11-04</registrated>
+    <certified>false</certified>
+</user-update>

@@ -20,6 +20,7 @@ public class DefaultServiceClassInitializer implements ServiceClassInitializer {
         Collection<Class<?>> result = new ArrayList<Class<?>>();
 
         result.add(InfoService.class);
+        result.add(AccountService.class);
 
         return result;
     }

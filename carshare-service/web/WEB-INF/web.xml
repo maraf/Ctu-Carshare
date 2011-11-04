@@ -9,12 +9,20 @@
         <param-value>UrlOnly</param-value>
     </context-param>
     <context-param>
+        <param-name>com.neptuo.service.TransactionProvider</param-name>
+        <param-value>com.carshare.service.DefaultTransactionProvider</param-value>
+    </context-param>
+    <context-param>
         <param-name>com.neptuo.service.MethodParamsProviderInitializer</param-name>
         <param-value>com.carshare.service.DefaultMethodParamsProviderInitializer</param-value>
     </context-param>
     <context-param>
         <param-name>com.neptuo.service.ServiceClassInitializer</param-name>
         <param-value>com.carshare.service.DefaultServiceClassInitializer</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.neptuo.service.EventConsumerInitializer</param-name>
+        <param-value>com.carshare.service.DefaultEventConsumerInitializer</param-value>
     </context-param>
 
     <servlet>

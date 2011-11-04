@@ -31,6 +31,8 @@ public class DefaultParamsProvider {
     protected ServletContext context;
     protected MethodInfo method;
 
+    protected EntityManager em;
+
     @ProviderMethod(ProviderMethodType.INIT)
     public void init() {
         
@@ -41,6 +43,8 @@ public class DefaultParamsProvider {
         this.request = request;
         this.response = response;
         this.context = context;
+
+        em = EntityManagerFactory.create();
     }
 
     @ProviderMethod(ProviderMethodType.AFTER)
@@ -54,20 +58,18 @@ public class DefaultParamsProvider {
         this.request = null;
         this.response = null;
         this.context = null;
+
+        em.close();
     }
 
     @ProviderMethod(ProviderMethodType.PROVIDE)
     public ParamsProviderResult provide(Class clazz, MethodInfo method, int index) throws HttpUnauthorizedException {
         this.method = method;
 
-        EntityManager em = null;
         Object result = null;
         boolean handled = false;
 
         if (clazz == EntityManager.class) {
-            if(em == null) {
-                em = EntityManagerFactory.create();
-            }
             result = em;
             handled = true;
         } else if (clazz == UserEntity.class) {
@@ -95,8 +97,6 @@ public class DefaultParamsProvider {
     }
 
     public UserEntity getCurrentUser() throws HttpUnauthorizedException {
-        EntityManager em = EntityManagerFactory.create();
-
         List<UserLogEntity> results = (List<UserLogEntity>) em
                 .createQuery("select ul from UserLogEntity ul where ul.authToken = :authToken and ul.logoutTime is null")
                 .setParameter("authToken", getAuthToken())
@@ -112,8 +112,6 @@ public class DefaultParamsProvider {
     }
 
     public UserLogEntity getCurrentUserLog() throws HttpUnauthorizedException {
-        EntityManager em = EntityManagerFactory.create();
-
         List<UserLogEntity> results = (List<UserLogEntity>) em
                 .createQuery("select ul from UserLogEntity ul where ul.authToken = :authToken and ul.logoutTime is null")
                 .setParameter("authToken", getAuthToken())

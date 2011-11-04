@@ -44,7 +44,6 @@ public class AccountService {
         
         UserLogEntity log = new UserLogEntity(entity.getId(), authToken, new Date());
         em.persist(log);
-        em.close();
         
         return new EntityResult<User>(entity.asUser());
     }
@@ -58,7 +57,6 @@ public class AccountService {
     public void logout(EntityManager em, UserLogEntity log) throws HttpException {
         log.setLogoutTime(new Date());
         em.persist(log);
-        em.close();
     }
 
     @ServiceMethod(name="register")
@@ -77,7 +75,6 @@ public class AccountService {
         entity.setCertified(false);
         entity.setPassword(HashHelper.SHA1(entity.getPhoneNumber() + entity.getPassword()));
         em.persist(entity);
-        em.close();
 
         return new EntityResult<User>(entity.asUser());
     }
@@ -90,7 +87,6 @@ public class AccountService {
         for (Object item : em.createQuery("select from " + UserEntity.class.getName()).getResultList()) {
             result.add(((UserEntity)item).asUser());
         }
-        em.close();
 
         return new CollectionResult<User>("users", result);
     }

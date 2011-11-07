@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/Logo" />
+ 
+   <TextView
+        android:id="@+id/textView0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="FILTER"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	<ScrollView
+	    android:id="@+id/scrollView1"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent" 
+	    android:layout_marginBottom="60dp">
+		
+	    <LinearLayout 
+	        android:id="@+id/linearLayout1" 
+	        android:layout_width="300dp"
+	    	android:layout_gravity="center_horizontal" 
+    		android:layout_height="match_parent"
+    		android:orientation="vertical">
+    		
+	  <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="From : "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="To : "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+   
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="maximum price : "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+
+
+
+
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:overScrollMode="always" />
+
+    <TimePicker
+        android:id="@+id/timePicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TimePicker
+        android:id="@+id/timePicker3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />	 
+	
+    
+    	
+    <TimePicker
+	    android:id="@+id/timePicker5"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" />
+
+	<TimePicker
+	    android:id="@+id/timePicker4"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" />
+
+	<DatePicker
+	    android:id="@+id/datePicker4"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" />
+
+	<DatePicker
+	    android:id="@+id/datePicker3"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" />
+
+	<DatePicker
+	    android:id="@+id/datePicker2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" />
+
+	<DatePicker
+	    android:id="@+id/datePicker1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" />
+    
+	
+        </LinearLayout>      
+    </ScrollView>
+
+     
+     <Button
+                
+                android:id="@+id/loginBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+            	android:layout_marginTop="-50dp"
+                android:textStyle="bold"
+                android:text="Send" />
+</LinearLayout>

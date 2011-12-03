@@ -23,6 +23,7 @@ public class DefaultServiceClassInitializer implements ServiceClassInitializer {
         result.add(InfoService.class);
         result.add(AccountService.class);
         result.add(MessageService.class);
+        result.add(TripService.class);
 
         return result;
     }

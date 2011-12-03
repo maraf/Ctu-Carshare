@@ -1,11 +1,22 @@
-package com.carshare.domain.dto;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import com.neptuo.service.io.annotation.*;
+package com.carshare.service.storage;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import com.carshare.domain.dto.*;
 import java.util.Date;
+import java.util.List;
 
-@Serializable(name="trip-row")
-@Deserializable(name="trip-row")
-public class TripRow {
+/**
+ *
+ * @author Mara
+ */
+@Entity
+public class TripEntity implements Serializable {
     private String id;
     private String from;
     private String to;
@@ -14,13 +25,13 @@ public class TripRow {
     private int totalPrice;
     private int availableSeats;
     private int totalSeats;
+    private List<TripStop> stops;
     private String driverId;
-    private int driverRating;
 
-    public TripRow() {
+    public TripEntity() {
     }
 
-    public TripRow(String id, String from, String to, Date departure, Date arrival, int totalPrice, int availableSeats, int totalSeats, String driverId, int driverRating) {
+    public TripEntity(String id, String from, String to, Date departure, Date arrival, int totalPrice, int availableSeats, int totalSeats, List<TripStop> stops, String driverId) {
         this.id = id;
         this.from = from;
         this.to = to;
@@ -29,107 +40,109 @@ public class TripRow {
         this.totalPrice = totalPrice;
         this.availableSeats = availableSeats;
         this.totalSeats = totalSeats;
+        this.stops = stops;
         this.driverId = driverId;
-        this.driverRating = driverRating;
     }
 
-    @Serializable(name="id")
+    public TripEntity(NewTrip trip) {
+        this.from = trip.getFrom();
+        this.to = trip.getTo();
+        this.departure = trip.getDeparture();
+        this.arrival = trip.getArrival();
+        this.totalPrice = trip.getTotalPrice();
+        this.availableSeats = trip.getAvailableSeats();
+        this.totalSeats = trip.getTotalSeats();
+        this.stops = trip.getStops();
+    }
+
+    @Id
     public String getId() {
         return id;
     }
 
-    @Serializable(name="to")
+    @Column(name="trip_to")
     public String getTo() {
         return to;
     }
 
-    @Serializable(name="from")
+    @Column(name="trip_from")
     public String getFrom() {
         return from;
     }
 
-    @Serializable(name="departure")
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getDeparture() {
         return departure;
     }
 
-    @Serializable(name="arrival")
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getArrival() {
         return arrival;
     }
 
-    @Serializable(name="total-price")
     public int getTotalPrice() {
         return totalPrice;
     }
 
-    @Serializable(name="available-seats")
     public int getAvailableSeats() {
         return availableSeats;
     }
 
-    @Serializable(name="total-seats")
     public int getTotalSeats() {
         return totalSeats;
     }
 
-    @Serializable(name="driver-id")
+    @Lob
+    public List<TripStop> getStops() {
+        return stops;
+    }
+
     public String getDriverId() {
         return driverId;
     }
 
-    @Serializable(name="driver-rating")
-    public int getDriverRating() {
-        return driverRating;
-    }
-
-    @Deserializable(name="id")
     public void setId(String id) {
         this.id = id;
     }
 
-    @Deserializable(name="to")
     public void setTo(String to) {
         this.to = to;
     }
 
-    @Deserializable(name="from")
     public void setFrom(String from) {
         this.from = from;
     }
 
-    @Deserializable(name="departure")
     public void setDeparture(Date departure) {
         this.departure = departure;
     }
 
-    @Deserializable(name="arrival")
     public void setArrival(Date arrival) {
         this.arrival = arrival;
     }
 
-    @Deserializable(name="total-price")
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 
-    @Deserializable(name="available-seats")
     public void setAvailableSeats(int availableSeats) {
         this.availableSeats = availableSeats;
     }
 
-    @Deserializable(name="total-seats")
+    public void setStops(List<TripStop> stops) {
+        this.stops = stops;
+    }
+
     public void setTotalSeats(int totalSeats) {
         this.totalSeats = totalSeats;
     }
 
-    @Deserializable(name="driver-id")
     public void setDriverId(String driverId) {
         this.driverId = driverId;
     }
 
-    @Deserializable(name="driver-rating")
-    public void setDriverRating(int driverRating) {
-        this.driverRating = driverRating;
+    public TripRow asTripRow() {
+        //TODO: Driver rating
+        return new TripRow(id, from, to, departure, arrival, totalPrice, availableSeats, totalSeats, driverId, 0);
     }
 }

@@ -33,7 +33,7 @@ public class TripFilter {
     }
 
     @Serializable(name="max-price")
-    public double getMaxPrice() {
+    public double getMaxPrice() { //Not yet implemented on server
         return maxPrice;
     }
 
@@ -43,7 +43,7 @@ public class TripFilter {
     }
 
     @Serializable(name="min-rating")
-    public int getMinRating() {
+    public int getMinRating() { //Not yet implemented on server
         return minRating;
     }
 

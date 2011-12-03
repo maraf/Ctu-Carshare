@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mara
  */
-public class ResponseHelper {
+public class ResponseHelper extends com.neptuo.service.util.ResponseHelper {
 
     public static String setAuthToken(HttpServletResponse response, String value) {
         response.setHeader(DefaultParamsProvider.AUTH_HEADER_NAME, value);

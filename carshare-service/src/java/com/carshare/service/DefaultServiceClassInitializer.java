@@ -8,8 +8,7 @@ package com.carshare.service;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.servlet.ServletContext;
-import com.carshare.service.impl.AccountService;
-import com.carshare.service.impl.InfoService;
+import com.carshare.service.impl.*;
 import com.neptuo.service.ServiceClassInitializer;
 
 /**
@@ -23,6 +22,7 @@ public class DefaultServiceClassInitializer implements ServiceClassInitializer {
 
         result.add(InfoService.class);
         result.add(AccountService.class);
+        result.add(MessageService.class);
 
         return result;
     }

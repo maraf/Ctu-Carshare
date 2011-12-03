@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<root>
+
 <user-update>
     <username>john.doe</username>
     <password>doe</password>
@@ -11,3 +13,34 @@
     <registrated>2011-11-04</registrated>
     <certified>false</certified>
 </user-update>
+
+
+<message-filter>
+    <count>10</count>
+    <from-user-id>SOME_USER_ID</from-user-id>
+</message-filter>
+
+
+<user-message>
+    <user-id>TARGET_USER_ID</user-id>
+    <subject>Hello Message!</subject>
+    <content>Hey, how are you?</content>
+</user-message>
+
+<carshare generated="1322666884216">
+    <app-info>
+        <hello>Hello there, from car-share service!</hello>
+        <app-name>car-share</app-name>
+        <version>alfa</version>
+    </app-info>
+</carshare>
+
+
+
+
+
+
+
+
+
+</root>

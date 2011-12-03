@@ -21,13 +21,22 @@ and open the template in the editor.
         <br />
         <textarea id="params" style="width: 700px; height: 200px;"></textarea>
         <hr />
+        
         Actions:
         <br />
+        
+        <strong>Account: </strong>
         <button id="login">Login</button>
         <button id="userInfo">User info</button>
         <button id="logout">Logout</button>
         <button id="register">Register</button>
-        
+        <button id="updateProfile">Update profile</button>
+        <br />
+
+        <strong>Message: </strong>
+        <button id="getMyMessages">Get my messages</button>
+        <button id="filterMyMessages">Filter my messages</button>
+        <button id="sendMessage">Send message</button>
 
         <p id="p"></p>
 
@@ -70,6 +79,26 @@ $("#logout").click(function() {
 $("#register").click(function() {
     $("#params").val("<user-update>\n  <phone-number>606111222</phone-number>\n  <password>doe</password>\n  <email>john@doe.eu</email>\n  <firstname>John</firstname>\n  <lastname>Doe</lastname>\n  <address>Dlouhá 5, Strakonice</address>\n  <car-description>Bíla škoda 120</car-description>\n  <registrated>2011-11-04</registrated>\n</user-update>");
     $("#url").val("/service/account/register");
+    $("#method").val("");
+});
+$("#updateProfile").click(function() {
+    $("#params").val("<user-update>\n  <phone-number>606111222</phone-number>\n  <password>doe</password>\n  <email>john@doe.eu</email>\n  <firstname>John</firstname>\n  <lastname>Doe</lastname>\n  <address>Dlouhá 5, Strakonice</address>\n  <car-description>Bíla škoda 120</car-description>\n  <registrated>2011-11-04</registrated>\n</user-update>");
+    $("#url").val("/service/account/update");
+    $("#method").val("");
+});
+$("#getMyMessages").click(function() {
+    $("#params").val("");
+    $("#url").val("/service/message");
+    $("#method").val("");
+});
+$("#filterMyMessages").click(function() {
+    $("#params").val("<message-filter>\n  <count>10</count>\n  <from-user-id>SOME_USER_ID</from-user-id>\n</message-filter>");
+    $("#url").val("/service/message");
+    $("#method").val("");
+});
+$("#sendMessage").click(function() {
+    $("#params").val("<user-message>\n  <user-id>TARGET_USER_ID</user-id>\n  <subject>Hello Message!</subject>\n  <content>Hey, how are you?</content>\n</user-message>");
+    $("#url").val("/service/message/send");
     $("#method").val("");
 });
 

@@ -59,7 +59,9 @@ public class DefaultParamsProvider {
         this.response = null;
         this.context = null;
 
-        em.close();
+        if(em.isOpen()) {
+            em.close();
+        }
     }
 
     @ProviderMethod(ProviderMethodType.PROVIDE)

@@ -1,17 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.carshare.domain.dto;
 
 import com.neptuo.service.io.annotation.*;
 import java.util.Date;
 
-/**
- *
- * @author Mara
- */
 @Serializable(name="user-update")
 @Deserializable
 public class UserUpdate extends User {

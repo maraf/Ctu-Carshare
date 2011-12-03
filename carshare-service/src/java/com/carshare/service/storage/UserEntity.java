@@ -32,28 +32,33 @@ public class UserEntity implements Serializable {
     }
 
     public UserEntity(User user) {
-        this.email = user.getEmail();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.phoneNumber = user.getPhoneNumber();
-        this.address = user.getAddress();
-        this.carDescription = user.getCarDescription();
-        this.registrated = user.getRegistrated();
-        this.certified = user.getCertified();
+        update(user);
     }
 
     public UserEntity(UserUpdate user) {
+        update(user);
+    }
+
+    public void update(User user) {
         this.email = user.getEmail();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.phoneNumber = user.getPhoneNumber();
         this.address = user.getAddress();
         this.carDescription = user.getCarDescription();
-        this.registrated = user.getRegistrated();
-        this.certified = user.getCertified();
-        this.password = user.getPassword();
+
+        if(this.id == null)
+            this.registrated = user.getRegistrated();
+
+        if(this.id == null)
+            this.certified = user.getCertified();
     }
 
+    public void update(UserUpdate user) {
+        update((User)user);
+        this.password = user.getPassword();
+    }
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     public String getId() {

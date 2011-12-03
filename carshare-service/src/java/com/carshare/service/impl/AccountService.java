@@ -61,8 +61,7 @@ public class AccountService {
 
     @ServiceMethod(name="register")
     public EntityResult<User> register(EntityManager em, @RequestInput("user-update") UserUpdate user) throws ServiceException {
-        //TODO: Check for unique
-        if(user.getPhoneNumber() == null || !isPhoneNumberUnique(em, user.getPhoneNumber())) {
+        if(user.getPhoneNumber() == null || !isPhoneNumberUnique(em, user.getPhoneNumber(), null)) {
             throw new InvalidPhoneNumberException();
         }
         if(user.getPassword() == null) {
@@ -79,6 +78,22 @@ public class AccountService {
         return new EntityResult<User>(entity.asUser());
     }
 
+    @ServiceMethod(name="update")
+    public EntityResult<User> update(EntityManager em, UserEntity current, @RequestInput("user-update") UserUpdate user) throws ServiceException {
+        if(user.getPhoneNumber() == null || !isPhoneNumberUnique(em, user.getPhoneNumber(), current.getId())) {
+            throw new InvalidPhoneNumberException();
+        }
+        if(user.getPassword() == null) {
+            throw new InvalidPasswordException();
+        }
+
+        current.update(user);
+        current.setPassword(HashHelper.SHA1(current.getPhoneNumber() + current.getPassword()));
+        em.persist(current);
+
+        return new EntityResult<User>(current.asUser());
+    }
+
     //TODO: Remove it!
     @ServiceMethod(name="list")
     public CollectionResult<User> list(EntityManager em) {
@@ -91,13 +106,19 @@ public class AccountService {
         return new CollectionResult<User>("users", result);
     }
 
-    private boolean isPhoneNumberUnique(EntityManager em, String phoneNumber) {
+    private boolean isPhoneNumberUnique(EntityManager em, String phoneNumber, String userId) {
         List<UserEntity> results = (List<UserEntity>) em
                 .createQuery("select u from UserEntity u where u.phoneNumber = :phoneNumber")
                 .setParameter("phoneNumber", phoneNumber)
                 .setMaxResults(1)
                 .getResultList();
 
-        return results.isEmpty();
+        if(results.isEmpty())
+            return true;
+        
+        if(userId != null && results.get(0).getId().equals(userId))
+            return true;
+
+        return false;
     }
 }

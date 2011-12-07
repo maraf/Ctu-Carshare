@@ -14,6 +14,6 @@ import java.util.ArrayList;
  */
 @Serializable(name="passenger-list")
 @Deserializable(name="passenger-list")
-public class PassengerList extends ArrayList<UserDetail> {
+public class PassengerList extends ArrayList<UserDetail> implements java.io.Serializable {
 
 }

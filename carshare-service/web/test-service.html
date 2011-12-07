@@ -24,13 +24,18 @@ and open the template in the editor.
         
         Actions:
         <br />
-        
+
         <strong>Account: </strong>
         <button id="login">Login</button>
         <button id="userInfo">User info</button>
         <button id="logout">Logout</button>
         <button id="register">Register</button>
         <button id="updateProfile">Update profile</button>
+        <br />
+
+        <strong>Trip: </strong>
+        <button id="filter">Filter trips</button>
+        <button id="create">Create new trip</button>
         <br />
 
         <strong>Message: </strong>
@@ -77,12 +82,12 @@ $("#logout").click(function() {
     $("#method").val("");
 });
 $("#register").click(function() {
-    $("#params").val("<user-update>\n  <phone-number>606111222</phone-number>\n  <password>doe</password>\n  <email>john@doe.eu</email>\n  <firstname>John</firstname>\n  <lastname>Doe</lastname>\n  <address>Dlouhá 5, Strakonice</address>\n  <car-description>Bíla škoda 120</car-description>\n  <registrated>2011-11-04</registrated>\n</user-update>");
+    $("#params").val("<user-update>\n  <phone-number>606111222</phone-number>\n  <password>doe</password>\n  <email>john@doe.eu</email>\n  <firstname>John</firstname>\n  <lastname>Doe</lastname>\n  <address>Dlouhá 5, Strakonice</address>\n  <car-description>Bíla škoda 120</car-description>\n</user-update>");
     $("#url").val("/service/account/register");
     $("#method").val("");
 });
 $("#updateProfile").click(function() {
-    $("#params").val("<user-update>\n  <phone-number>606111222</phone-number>\n  <password>doe</password>\n  <email>john@doe.eu</email>\n  <firstname>John</firstname>\n  <lastname>Doe</lastname>\n  <address>Dlouhá 5, Strakonice</address>\n  <car-description>Bíla škoda 120</car-description>\n  <registrated>2011-11-04</registrated>\n</user-update>");
+    $("#params").val("<user-update>\n  <phone-number>606111222</phone-number>\n  <password>doe</password>\n  <email>john@doe.eu</email>\n  <firstname>John</firstname>\n  <lastname>Doe</lastname>\n  <address>Dlouhá 5, Strakonice</address>\n  <car-description>Bíla škoda 120</car-description>\n</user-update>");
     $("#url").val("/service/account/update");
     $("#method").val("");
 });
@@ -99,6 +104,16 @@ $("#filterMyMessages").click(function() {
 $("#sendMessage").click(function() {
     $("#params").val("<user-message>\n  <user-id>TARGET_USER_ID</user-id>\n  <subject>Hello Message!</subject>\n  <content>Hey, how are you?</content>\n</user-message>");
     $("#url").val("/service/message/send");
+    $("#method").val("");
+});
+$("#filter").click(function() {
+    $("#params").val("<trip-filter>\n    <from>Louny</from>\n    <to>Praha</to>\n    <max-price>500</max-price>\n    <seats>2</seats>\n    <min-rating>100</min-rating>\n</trip-filter>");
+    $("#url").val("/service/trip");
+    $("#method").val("");
+});
+$("#create").click(function() {
+    $("#params").val("<new-trip>\n    <from>Louny</from>\n    <to>Praha</to>\n    <departure>2011-12-07</departure>\n    <arrival>2011-12-07</arrival>\n    <total-price>500</total-price>\n    <available-seats>4</available-seats>\n    <total-seats>5</total-seats>\n    <stops>\n        <trip-stop>\n            <place>Roudnice</place>\n            <arrival>2011-12-07</arrival>\n        </trip-stop>\n    </stops>\n</new-trip>");
+    $("#url").val("/service/trip/create");
     $("#method").val("");
 });
 

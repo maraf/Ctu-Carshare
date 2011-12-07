@@ -5,7 +5,7 @@ import com.neptuo.service.io.annotation.*;
 
 @Serializable(name="user")
 @Deserializable(name="user")
-public class User {
+public class User implements java.io.Serializable {
     private String id;
     private String email;
     private String firstName;

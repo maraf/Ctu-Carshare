@@ -36,6 +36,30 @@
 </carshare>
 
 
+<trip-filter>
+    <from>Louny</from>
+    <to>Praha</to>
+    <max-price>500</max-price>
+    <seats>2</seats>
+    <min-rating>100</min-rating>
+</trip-filter>
+
+
+<new-trip>
+    <from>Louny</from>
+    <to>Praha</to>
+    <departure>2011-12-07</departure>
+    <arrival>2011-12-07</arrival>
+    <total-price>500</total-price>
+    <available-seats>4</available-seats>
+    <total-seats>5</total-seats>
+    <stops>
+        <trip-stop>
+            <place>Roudnice</place>
+            <arrival>2011-12-07</arrival>
+        </trip-stop>
+    </stops>
+</new-trip>
 
 
 

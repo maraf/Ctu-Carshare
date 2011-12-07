@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Serializable(name="user-message")
 @Deserializable(name="user-message")
-public class UserMessage {
+public class UserMessage implements java.io.Serializable {
     private String userId;
     private String subject;
     private String content;

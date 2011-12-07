@@ -4,7 +4,7 @@ import com.neptuo.service.io.annotation.*;
 
 @Serializable(name="trip-filter")
 @Deserializable(name="trip-filter")
-public class TripFilter {
+public class TripFilter implements java.io.Serializable {
     private String from;
     private String to;
     private double maxPrice;

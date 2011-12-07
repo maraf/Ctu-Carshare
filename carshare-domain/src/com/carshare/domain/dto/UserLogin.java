@@ -4,7 +4,7 @@ import com.neptuo.service.io.annotation.*;
 
 @Serializable(name="user-login")
 @Deserializable(name="user-login")
-public class UserLogin {
+public class UserLogin implements java.io.Serializable {
     private String phoneNumber;
     private String password;
 

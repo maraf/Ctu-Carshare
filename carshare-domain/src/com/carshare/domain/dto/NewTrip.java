@@ -6,7 +6,7 @@ import java.util.List;
 
 @Serializable(name="new-trip")
 @Deserializable(name="new-trip")
-public class NewTrip {
+public class NewTrip implements java.io.Serializable {
     private String from;
     private String to;
     private Date departure;

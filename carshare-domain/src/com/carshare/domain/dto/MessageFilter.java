@@ -4,7 +4,7 @@ import com.neptuo.service.io.annotation.*;
 
 @Serializable(name="message-filter")
 @Deserializable(name="message-filter")
-public class MessageFilter {
+public class MessageFilter implements java.io.Serializable {
     private int count;
     private String fromUserId;
 

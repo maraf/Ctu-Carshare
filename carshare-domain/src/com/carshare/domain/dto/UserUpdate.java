@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Serializable(name="user-update")
 @Deserializable
-public class UserUpdate extends User {
+public class UserUpdate extends User implements java.io.Serializable {
     private String password;
 
     public UserUpdate() {

@@ -4,7 +4,7 @@ import com.neptuo.service.io.annotation.*;
 
 @Serializable(name="app-info")
 @Deserializable(name="app-info")
-public class AppInfo {
+public class AppInfo implements java.io.Serializable {
     private String version;
     private String appName;
     private String hello;

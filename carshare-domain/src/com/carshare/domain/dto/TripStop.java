@@ -3,9 +3,9 @@ package com.carshare.domain.dto;
 import com.neptuo.service.io.annotation.*;
 import java.util.Date;
 
-@Serializable(name="trip-detail")
-@Deserializable(name="trip-detail")
-public class TripStop {
+@Serializable(name="trip-stop")
+@Deserializable(name="trip-stop")
+public class TripStop implements java.io.Serializable {
     private String place;
     private Date arrival;
 

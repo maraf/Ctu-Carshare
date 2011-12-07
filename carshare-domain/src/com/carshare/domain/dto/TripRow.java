@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Serializable(name="trip-row")
 @Deserializable(name="trip-row")
-public class TripRow {
+public class TripRow implements java.io.Serializable {
     private String id;
     private String from;
     private String to;

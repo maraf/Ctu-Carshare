@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Serializable(name="user-detail")
 @Deserializable(name="user-detail")
-public class UserDetail extends User {
+public class UserDetail extends User implements java.io.Serializable {
     private int rating;
 
     public UserDetail() {

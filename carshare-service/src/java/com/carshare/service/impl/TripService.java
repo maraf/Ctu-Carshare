@@ -6,15 +6,9 @@
 package com.carshare.service.impl;
 
 import com.carshare.domain.dto.*;
-import com.carshare.service.storage.TripEntity;
-import com.carshare.service.storage.TripUserEntity;
-import com.carshare.service.storage.UserEntity;
+import com.carshare.service.storage.*;
 import com.carshare.service.util.*;
-import com.carshare.service.validation.NullFieldException;
-import com.carshare.service.validation.NullRequstObjectException;
-import com.carshare.service.validation.OnlyDriverCanModifyException;
-import com.carshare.service.validation.UserAlreadyInTripException;
-import com.carshare.service.validation.UserNotRequestedInTripException;
+import com.carshare.service.validation.*;
 import com.neptuo.service.*;
 import com.neptuo.service.annotation.*;
 import com.neptuo.service.result.*;
@@ -35,26 +29,7 @@ public class TripService {
         String query = "select t from TripEntity t where t.departure >= :departure";
         params.put("departure", new Date());
 
-        if(filter != null) {
-            if(StringUtils.isNullOrEmpty(filter.getFrom())) {
-                query += " and from = :from";
-                params.put("from", filter.getFrom());
-            }
-            if(StringUtils.isNullOrEmpty(filter.getTo())) {
-                query += " and to = :to";
-                params.put("to", filter.getTo());
-            }
-//            if(filter.getMaxPrice() > 0) {
-//                //TODO: Compute price ...
-//                query += " and totalPrice <= :maxPrice";
-//                params.put("maxPrice", filter.getMaxPrice());
-//            }
-//            if(filter.getSeats() > 0) {
-//                query += " and availableSeats >= :seats";
-//                params.put("seats", filter.getSeats());
-//            }
-            //TODO: Driver rating ...
-        }
+        TripFilterHelper helper = new TripFilterHelper(filter, em);
 
         Query q = em.createQuery(query);
         for (String key : params.keySet()) {
@@ -64,7 +39,7 @@ public class TripService {
         List<TripRow> result = new ArrayList<TripRow>();
         List<TripEntity> trips = (List<TripEntity>) q.getResultList();
         for (TripEntity entry : trips) {
-            if(filter.getSeats() > 0 && filter.getSeats() <= entry.getAvailableSeats())  {
+            if(helper.filter(entry)) {
                 result.add(entry.asTripRow());
             }
         }

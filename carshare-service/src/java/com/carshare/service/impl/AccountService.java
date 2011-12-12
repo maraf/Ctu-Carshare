@@ -83,12 +83,11 @@ public class AccountService {
         if(user.getPhoneNumber() == null || !isPhoneNumberUnique(em, user.getPhoneNumber(), current.getId())) {
             throw new InvalidPhoneNumberException();
         }
-        if(user.getPassword() == null) {
-            throw new InvalidPasswordException();
-        }
 
         current.update(user);
-        current.setPassword(HashHelper.SHA1(current.getPhoneNumber() + current.getPassword()));
+        if(!StringUtils.isNullOrEmpty(user.getPassword())) {
+            current.setPassword(HashHelper.SHA1(current.getPhoneNumber() + current.getPassword()));
+        }
         em.persist(current);
 
         return new EntityResult<User>(current.asUser());

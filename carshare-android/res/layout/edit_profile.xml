@@ -1,6 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
     android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/editProfileImageView"
+        style="@style/logo" />
+
+    <TextView
+        android:id="@+id/editProfileTextView0"
+        style="@style/nadpis"
+        android:text="EDIT PROFILE" />
+
+    <ScrollView
+        android:id="@+id/editProfileScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="60dip"
+        android:layout_marginTop="10dip"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/editProfileLinearLayout1"
+            android:layout_width="300dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/editProfileTextView1"
+                style="@style/bold_text"
+                android:text="Phone number : " />
+
+            <EditText
+                android:id="@+id/editProfilePhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/editProfileTextView2"
+                style="@style/bold_text"
+                android:text="Password : " />
+
+            <EditText
+                android:id="@+id/editProfilePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/editProfileTextView3"
+                style="@style/bold_text"
+                android:text="Password confirm : " />
+
+            <EditText
+                android:id="@+id/editProfilePasswordConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+			<TextView
+                android:id="@+id/editProfileTextView4"
+                style="@style/bold_text"
+                android:text="Email : " />
+
+            <EditText
+                android:id="@+id/editProfileEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+			
+			<TextView
+                android:id="@+id/editProfileTextView5"
+                style="@style/bold_text"
+                android:text="First name : " />
+
+
+            <EditText
+                android:id="@+id/editProfileFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+			
+            			
+			<TextView
+                android:id="@+id/editProfileTextView6"
+                style="@style/bold_text"
+                android:text="Last name : " />
+
+			
+            <EditText
+                android:id="@+id/editProfileLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+			
+			
+			<TextView
+                android:id="@+id/editProfileTextView7"
+                style="@style/bold_text"
+                android:text="Address : " />
+            
+            <EditText
+                android:id="@+id/editProfileAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress" />
+			
+			<TextView
+                android:id="@+id/editProfileTextView8"
+                style="@style/bold_text"
+                android:text="Car description : " />
+            
+            <EditText
+                android:id="@+id/editProfileCarDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine" />
+			
+            </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/editProfileLinearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        android:gravity="center_horizontal" >
+        <Button
+        	android:id="@+id/editProfileSaveBtn"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="Save"
+        	android:textStyle="bold" />
+        <Button
+        	android:id="@+id/editProfileCencelBtn"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="Cencel"
+        	android:textStyle="bold" />
+    </LinearLayout>
+
 </LinearLayout>

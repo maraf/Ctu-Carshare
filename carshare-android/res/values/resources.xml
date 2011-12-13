@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Car Share</string>
+    <style name="logo">
+       <item name="android:layout_gravity">center_horizontal</item>     
+       <item name="android:layout_width">wrap_content</item>
+       <item name="android:layout_height">wrap_content</item>
+       <item name="android:layout_marginTop">10dip</item>
+       <item name="android:src">@drawable/logo</item>
+    </style>
+    <style name="bold_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+    <style name="nadpis" parent="bold_text">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">10dip</item>
+        <item name="android:textSize">20dip</item>
+    </style>
+    
+    <style name="data_grid_text" parent="bold_text">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">10dip</item>
+    </style>
+</resources>

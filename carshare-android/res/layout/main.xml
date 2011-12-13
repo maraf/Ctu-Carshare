@@ -6,94 +6,85 @@
     android:layout_gravity="center" >
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo" />
+        android:id="@+id/mainImageView"
+        style="@style/logo" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="LOGIN"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:id="@+id/mainTextView0"
+		style="@style/nadpis"
+        android:text="LOGIN" />
 
     <TableLayout
-        android:id="@+id/tableLayout1"
+        android:id="@+id/mainTableLayout"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1" 
         android:layout_margin="10dp" >
 
         <TableRow
-            android:id="@+id/tableRow1"
+            android:id="@+id/mainTableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/mainTextView1"
+				style="@style/bold_text"
                 android:layout_gravity="center_vertical"
-                android:text="Email:"
-                android:textStyle="bold"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="Phone no.:" />
 
             <EditText
-                android:id="@+id/emailText"
+                android:id="@+id/mainPhone"
                 android:layout_width="fill_parent"             
                 android:layout_weight="1"
-                android:inputType="textEmailAddress" />
+                android:inputType="phone" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow2"
+            android:id="@+id/mainTableRow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/mainTextView2"
+                style="@style/bold_text"
                 android:layout_gravity="center_vertical"  
-                android:text="Password:"
-                android:textStyle="bold"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="Password:" />
 
             <EditText
-                android:id="@+id/passwordText"
+                android:id="@+id/mainPassword"
                 android:layout_width="fill_parent"
-              
                 android:layout_weight="1"
                 android:inputType="textPassword" />
         </TableRow>
 
+       <TextView
+            android:id="@+id/mainValidity"
+            style="@style/bold_text"
+            android:textSize="15dp"            
+            android:gravity="center_horizontal"
+            android:textColor="#ffff0000"
+            android:text="Invalid phone number or password."/>
+
+      
         <TableRow
-            android:id="@+id/tableRow3"
+            android:id="@+id/mainTableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <Button
-                android:id="@+id/registrationBtn"
+                android:id="@+id/mainRegistrationBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-               
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:text="Registration" />
 
             <Button
-                android:id="@+id/loginBtn"
+                android:id="@+id/mainLoginBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-       
+                android:layout_marginLeft="2dp"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:text="Login" />

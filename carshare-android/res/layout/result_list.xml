@@ -17,21 +17,39 @@
     <HorizontalScrollView
         android:id="@+id/resultListHorizontalScrollView"
         android:layout_width="match_parent"
-       	android:layout_height="match_parent">
-   
+       	android:layout_height="match_parent"
+       	android:layout_marginBottom="60dp">
+ 
+      
     	<ListView       
         	android:id="@+id/resultListListView"     
         	android:layout_width="match_parent"      
         	android:layout_height="match_parent" 
-        	android:divider="#ffffff"/>    
+        	android:divider="#ffffff"
+        	android:headerDividersEnabled="true"
+        	/>   
+        	  
+        	
     </HorizontalScrollView>
-    
-    <Button
+   
+    <LinearLayout
+        android:id="@+id/resultListLinearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        android:gravity="center_horizontal" >
+        <Button
         android:id="@+id/resultListNewSearchBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="New Search"
+        android:text="New search"
         android:textStyle="bold" />
+        <Button
+        android:id="@+id/resultListCencelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cencel"
+        android:textStyle="bold" />
+    </LinearLayout>
         
 </LinearLayout>

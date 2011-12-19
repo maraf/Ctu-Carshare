@@ -17,14 +17,14 @@ public class MenuActivity extends Activity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);   
         setContentView(R.layout.menu);         
+        
+        if (Resources.getIdUser()==null)
+    		MenuActivity.this.startActivity(new Intent(MenuActivity.this,CarShareAndroidAplicationActivity.class));
        
         Button searchBtn = (Button) findViewById(R.id.menuSearchBtn);
         Button createBtn = (Button) findViewById(R.id.menuCreateBtn);
         Button updateBtn = (Button) findViewById(R.id.menuUpdateBtn);
         Button logoutBtn = (Button) findViewById(R.id.menuLogoutBtn);
-        
-        if (Resources.getIdUser()==null)
-    		MenuActivity.this.startActivity(new Intent(MenuActivity.this,CarShareAndroidAplicationActivity.class));
         
         searchBtn.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
@@ -34,7 +34,7 @@ public class MenuActivity extends Activity{
         
         createBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	MenuActivity.this.startActivity(new Intent(MenuActivity.this,CarShareAndroidAplicationActivity.class));
+            	MenuActivity.this.startActivity(new Intent(MenuActivity.this,NewTripActivity.class));
             }
         });  
         

@@ -1,9 +1,9 @@
-/*package carShare.androidAplication;
+package carShare.androidAplication;
 
-import com.carshare.domain.Trip;
 import com.carshare.domain.dto.TripRow;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +13,13 @@ import android.widget.TextView;
 class ListItemAdapter extends ArrayAdapter<Ride>
 {      
 	private Context context;
-	private TripRow [] rides;
+
 	
-	public ListItemAdapter(Context context, int textViewResourceId, TripRow[] objects) 
+	public ListItemAdapter(Context context, int textViewResourceId) 
 	{             
-		super(context, textViewResourceId,objects);        
+		super(context, textViewResourceId);        
 		this.context = context;
-		rides = objects;
+		
 	}         
 	
 	public View getView(int position, View convertView, ViewGroup parent) 
@@ -31,17 +31,20 @@ class ListItemAdapter extends ArrayAdapter<Ride>
 			v = vi.inflate(R.layout.row, null);             
 		}             
 		
-		TripRow item = rides[position];             
-		if (item != null) 
-		{                     	
+		     
+		TextView departureTime = (TextView) v.findViewById(R.id.rowDepartureTime);                     
+		TextView timeOfArrival = (TextView) v.findViewById(R.id.rowTimeOfArrival);    
+		TextView pricePerPerson = (TextView) v.findViewById(R.id.rowPricePerPerson);                     
+		TextView totalPrice = (TextView) v.findViewById(R.id.rowTotalPrice);    
+		TextView freePlace = (TextView) v.findViewById(R.id.rowFreePlace);                     
+		TextView driverEvaluation = (TextView) v.findViewById(R.id.rowDriverEvaluation);    
+		TextView detail = (TextView) v.findViewById(R.id.rowDetail);  
+	   
 			
-			TextView departureTime = (TextView) v.findViewById(R.id.departureTime);                     
-			TextView timeOfArrival = (TextView) v.findViewById(R.id.timeOfArrival);    
-			TextView pricePerPerson = (TextView) v.findViewById(R.id.pricePerPerson);                     
-			TextView totalPrice = (TextView) v.findViewById(R.id.totalPrice);    
-			TextView freePlace = (TextView) v.findViewById(R.id.freePlace);                     
-			TextView driverEvaluation = (TextView) v.findViewById(R.id.driverEvaluation);    
-			TextView detail = (TextView) v.findViewById(R.id.detail);  
+			
+			
+			
+		
 			
 			if (position == 0){
 				departureTime.setBackgroundColor(Color.parseColor("#AAFFFF99"));                   
@@ -53,28 +56,32 @@ class ListItemAdapter extends ArrayAdapter<Ride>
 				detail.setBackgroundColor(Color.parseColor("#AAFFFF99"));  
 			}
 			
+			for (TripRow trip : Resources.getTripRows()){
+				if(departureTime != null)                       
+					departureTime.setText(trip.getDeparture().toString());                                
+				
+				if(timeOfArrival != null)                     
+					timeOfArrival.setText(trip.getArrival().toString());  
+				
+				if(pricePerPerson != null)                       
+					pricePerPerson.setText(null);                                
+				
+				if(totalPrice != null)                     
+					totalPrice.setText(trip.getTotalPrice()); 
+				
+				if(freePlace != null)                       
+					freePlace.setText(trip.getTotalSeats());                                
+				
+				if(driverEvaluation != null)                     
+					driverEvaluation.setText(trip.getDriverRating());  
+				
+				if(detail != null)                     
+					detail.setText(null);          
+				
+			}
 		
-			if(departureTime != null)                       
-				departureTime.setText(item.getDepartureTime());                                
-			
-			if(timeOfArrival != null)                     
-				timeOfArrival.setText(item.getTimeOfArrival());  
-			
-			if(pricePerPerson != null)                       
-				pricePerPerson.setText(item.getPricePerPerson());                                
-			
-			if(totalPrice != null)                     
-				totalPrice.setText(item.getTotalPrice()); 
-			
-			if(freePlace != null)                       
-				freePlace.setText(item.getFreePlace());                                
-			
-			if(driverEvaluation != null)                     
-				driverEvaluation.setText(item.getDriverEvaluation());  
-			
-			if(detail != null)                     
-				detail.setText(item.getDetail());          
-		}             
+
+		            
 		return v;        
 	}            
-} */
+}

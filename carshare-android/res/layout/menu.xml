@@ -11,13 +11,13 @@
     <TextView
         android:id="@+id/menuTextView0"
 		style="@style/nadpis"
-        android:text="LOGIN" />
+        android:text="MENU" />
     
     <ScrollView
         android:id="@+id/menuScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="60dip"
+        android:layout_marginBottom="10dip"
         android:layout_marginTop="10dip"
         android:layout_weight="1" >
 

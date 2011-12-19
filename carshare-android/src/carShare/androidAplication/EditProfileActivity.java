@@ -1,7 +1,6 @@
 package carShare.androidAplication;
 import java.io.InputStream;
 
-import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -42,6 +41,9 @@ public class EditProfileActivity extends Activity{
         super.onCreate(savedInstanceState);   
         setContentView(R.layout.edit_profile);         
        
+        if (Resources.getIdUser()==null)
+    		EditProfileActivity.this.startActivity(new Intent(EditProfileActivity.this,CarShareAndroidAplicationActivity.class));
+        
         Button saveBtn = (Button) findViewById(R.id.editProfileSaveBtn);
         Button cencelBtn = (Button) findViewById(R.id.editProfileCencelBtn);
         
@@ -53,9 +55,6 @@ public class EditProfileActivity extends Activity{
     	lastName = (EditText) findViewById(R.id.editProfileLastName);
     	address = (EditText) findViewById(R.id.editProfileAddress);  
     	car = (EditText) findViewById(R.id.editProfileCarDescription);
-    		
-    	if (Resources.getIdUser()==null)
-    		EditProfileActivity.this.startActivity(new Intent(EditProfileActivity.this,CarShareAndroidAplicationActivity.class));
     		
     	try 
     	{       	

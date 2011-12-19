@@ -40,6 +40,10 @@
             android:label="@string/app_name"
             android:name=".FilterActivity" >
         </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".NewTripActivity" >
+        </activity>
     </application>
 
 </manifest>

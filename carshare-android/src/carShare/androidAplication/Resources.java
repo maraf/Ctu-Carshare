@@ -12,6 +12,11 @@ public class Resources {
 	public static Collection<TripRow> getTripRows() {
 		return tripRows;
 	}
+	
+	public static TripRow[] getTripRowsArray() {
+		return  (TripRow[]) tripRows.toArray(new TripRow[tripRows.size()]);
+	}
+	
 	public static void setTripRows(Collection<TripRow> tripRows) {
 		Resources.tripRows = tripRows;
 	}

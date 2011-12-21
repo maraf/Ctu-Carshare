@@ -19,11 +19,14 @@ import com.neptuo.service.io.XmlDeserializer;
 import com.neptuo.service.io.XmlSerializer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class EditProfileActivity extends Activity{
 	
@@ -35,14 +38,20 @@ public class EditProfileActivity extends Activity{
 	private EditText lastName;
 	private EditText address;  
 	private EditText car;
+	private TextView validity;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);   
         setContentView(R.layout.edit_profile);         
-       
+        
+        validity = (TextView) findViewById(R.id.editProfileValidity);
+    	validity.setHeight(0);
+    	
+        
         if (Resources.getIdUser()==null)
     		EditProfileActivity.this.startActivity(new Intent(EditProfileActivity.this,CarShareAndroidAplicationActivity.class));
+        
         
         Button saveBtn = (Button) findViewById(R.id.editProfileSaveBtn);
         Button cencelBtn = (Button) findViewById(R.id.editProfileCencelBtn);
@@ -55,7 +64,7 @@ public class EditProfileActivity extends Activity{
     	lastName = (EditText) findViewById(R.id.editProfileLastName);
     	address = (EditText) findViewById(R.id.editProfileAddress);  
     	car = (EditText) findViewById(R.id.editProfileCarDescription);
-    		
+ 
     	try 
     	{       	
             DefaultHttpClient httpPostclient = new DefaultHttpClient();
@@ -100,26 +109,32 @@ public class EditProfileActivity extends Activity{
         			userUpdate.setLastName(lastName.getText().toString());
         			userUpdate.setAddress(address.getText().toString());
         			userUpdate.setCarDescription(car.getText().toString());
-				
-        			if (password.getText().toString().equals(passwordConfirm.getText().toString())&&!password.getText().toString().equals(""))
-        				userUpdate.setPassword(password.getText().toString());							
-				
-        			XmlSerializer serializer = new XmlSerializer("carshare");
-        			AutoSerializer.factory("user-update", userUpdate, serializer).serialize();
-        			String output = serializer.getResult();
         			
-        			DefaultHttpClient httpPostclient = new DefaultHttpClient();
-        			HttpConnectionParams.setConnectionTimeout(httpPostclient.getParams(), 10000);
-        			HttpPost httpPostRequest = new HttpPost(Resources.getServer()+"/service/account/update");
-        			httpPostRequest.setHeader("Accept", "application/xml");
-        			httpPostRequest.setHeader("Content-type", "application/xml");
-        			httpPostRequest.addHeader("AuthToken", Resources.getIdUser());
-        	
-        			httpPostRequest.setEntity(new StringEntity(output,HTTP.UTF_8));
-        			HttpResponse responsePost = (HttpResponse) httpPostclient.execute(httpPostRequest);
+        			
+				
+        			if (password.getText().toString().equals(passwordConfirm.getText().toString())){
+        				if (!password.getText().toString().equals(""))
+        					userUpdate.setPassword(password.getText().toString());
 
-        			if (responsePost.getStatusLine().getStatusCode()==HttpStatus.SC_OK)
-        				EditProfileActivity.this.startActivity(new Intent(EditProfileActivity.this,MenuActivity.class));
+        				XmlSerializer serializer = new XmlSerializer("carshare");
+        				AutoSerializer.factory("user-update", userUpdate, serializer).serialize();
+        				String output = serializer.getResult();
+        			
+        				DefaultHttpClient httpPostclient = new DefaultHttpClient();
+        				HttpConnectionParams.setConnectionTimeout(httpPostclient.getParams(), 10000);
+        				HttpPost httpPostRequest = new HttpPost(Resources.getServer()+"/service/account/update");
+        				httpPostRequest.setHeader("Accept", "application/xml");
+        				httpPostRequest.setHeader("Content-type", "application/xml");
+        				httpPostRequest.addHeader("AuthToken", Resources.getIdUser());
+        	
+        				httpPostRequest.setEntity(new StringEntity(output,HTTP.UTF_8));
+        				HttpResponse responsePost = (HttpResponse) httpPostclient.execute(httpPostRequest);
+
+        				if (responsePost.getStatusLine().getStatusCode()==HttpStatus.SC_OK)
+        					msbox("User updated");        				
+        			}
+        			else
+        				validity.setHeight(20);
         			
             	}
         		catch (Exception e)
@@ -133,6 +148,18 @@ public class EditProfileActivity extends Activity{
             public void onClick(View v) {
             	EditProfileActivity.this.startActivity(new Intent(EditProfileActivity.this,MenuActivity.class));
             }
-        });  
+        });     
 	}
+	
+    public void msbox(String message)
+    {
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);  
+        dlgAlert.setTitle("Info"); 
+        dlgAlert.setMessage(message);
+        dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+        	EditProfileActivity.this.startActivity(new Intent(EditProfileActivity.this,MenuActivity.class));	
+        }});
+        dlgAlert.create().show();
+    }
 }

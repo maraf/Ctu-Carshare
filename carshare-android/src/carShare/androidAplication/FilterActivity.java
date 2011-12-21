@@ -1,7 +1,7 @@
 package carShare.androidAplication;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collection;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -93,9 +93,9 @@ public class FilterActivity extends Activity{
                          if (entity != null){
                          	InputStream is = entity.getContent();
                          	XmlDeserializer deserializer = new XmlDeserializer();
-                         	AutoDeserializerItem tripItem = new AutoDeserializerItem("trip-row", Collection.class, TripRow.class);
+                         	AutoDeserializerItem tripItem = new AutoDeserializerItem("trips", Collection.class, TripRow.class);
                          	AutoDeserializer.factory(deserializer, is, tripItem).deserialize();
-                         	Resources.setTripRows((Collection<TripRow>) tripItem.getCollection());
+                         	Resources.setTripRows((Collection<TripRow>)tripItem.getCollection());
                          	FilterActivity.this.startActivity(new Intent(FilterActivity.this,ResultActivity.class));
                          }       	
                     }

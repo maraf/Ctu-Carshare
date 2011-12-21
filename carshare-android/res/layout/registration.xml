@@ -150,7 +150,7 @@
         android:id="@+id/registrationCencelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cencel"
+        android:text="Cancel"
         android:textStyle="bold" />
     </LinearLayout>
 

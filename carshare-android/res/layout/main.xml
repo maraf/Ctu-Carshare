@@ -75,7 +75,6 @@
                 android:id="@+id/mainRegistrationBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:text="Registration" />
@@ -84,7 +83,6 @@
                 android:id="@+id/mainLoginBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:text="Login" />

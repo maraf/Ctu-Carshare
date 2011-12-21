@@ -7,50 +7,58 @@ android:layout_height="match_parent"
 xmlns:android="http://schemas.android.com/apk/res/android">
     
     <TextView 
-        android:id="@+id/rowDepartureTime"
-        android:layout_height="wrap_content" 
-        android:layout_width="150px" 
-        style="@style/data_grid_text" /> 
+       	android:id="@+id/rowFrom"
+       	android:layout_height="wrap_content" 
+       	android:layout_width="100px" 
+       	android:textColor="#ff00ff00"
+       	style="@style/data_grid_text" />     
+ 
+	<TextView 
+     	android:id="@+id/rowTo"
+     	android:layout_height="wrap_content" 
+     	android:layout_width="100px" 
+     	android:textColor="#ff00ff00"
+     	style="@style/data_grid_text" /> 
         
     <TextView 
-        android:id="@+id/rowTimeOfArrival"
-        android:layout_height="wrap_content" 
-        android:layout_width="150px" 
-       style="@style/data_grid_text" /> 
-        
-    <TextView 
-        android:id="@+id/rowPricePerPerson"
-        android:layout_height="wrap_content" 
-        android:layout_width="150px" 
-       style="@style/data_grid_text"/> 
-        
-    <TextView 
-        android:id="@+id/rowTotalPrice"
-        android:layout_height="wrap_content" 
-        android:layout_width="150px" 
-        style="@style/data_grid_text" /> 
+    	android:id="@+id/rowDeparture"
+    	android:layout_height="wrap_content" 
+    	android:layout_width="100px" 
+    	android:textColor="#ff00ff00"
+    	style="@style/data_grid_text"/> 
     
     <TextView 
-        android:id="@+id/rowFreePlace"
-        android:layout_height="wrap_content" 
-        android:layout_width="150px" 
-        style="@style/data_grid_text" /> 
-   
+    	android:id="@+id/rowArrival"
+    	android:layout_height="wrap_content" 
+    	android:layout_width="100px" 
+    	android:textColor="#ff00ff00"
+    	style="@style/data_grid_text" /> 
+    
+    <TextView 
+    	android:id="@+id/rowTotalPrice"
+    	android:layout_height="wrap_content" 
+    	android:layout_width="100px" 
+    	android:textColor="#ff00ff00"
+    	style="@style/data_grid_text" /> 
+   
     <TextView
-        android:id="@+id/rowDriverEvaluation"
-        android:layout_width="150px"
-        android:layout_height="wrap_content"
-        style="@style/data_grid_text" />
+   		android:id="@+id/rowAvailableSeats"
+   		android:layout_height="wrap_content"
+   		android:layout_width="100px"
+   		android:textColor="#ff00ff00"
+   		style="@style/data_grid_text" />
                  
-    <TextView
-        android:id="@+id/rowDetail"
-        android:linksClickable="true"
-        android:textColorLink="#ff00ff00"
-        android:gravity="center_horizontal"
-    
-        android:layout_height="wrap_content" 
-        android:layout_width="wrap_content" 
-        android:textSize="10sp" 
-        android:textStyle="bold" 
-        /> 
+   	<TextView
+   		android:id="@+id/rowTotalSeats"
+   		android:layout_height="wrap_content" 
+   		android:layout_width="100px" 
+   		android:textColor="#ff00ff00"
+   		style="@style/data_grid_text"/> 
+        			
+   	<TextView
+   		android:id="@+id/rowDriverRating"
+   		android:layout_height="wrap_content" 
+   		android:layout_width="100px" 
+   		android:textColor="#ff00ff00"
+   		style="@style/data_grid_text"/> 
 </LinearLayout>

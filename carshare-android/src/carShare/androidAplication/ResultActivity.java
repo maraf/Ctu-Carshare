@@ -1,5 +1,7 @@
 package carShare.androidAplication;
 
+import com.carshare.domain.dto.TripRow;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,8 +22,10 @@ public class ResultActivity extends Activity {
         if (Resources.getIdUser()==null)
     		ResultActivity.this.startActivity(new Intent(ResultActivity.this,CarShareAndroidAplicationActivity.class));
         
+        TripRow [] rows = Resources.getTripRowsArray();
+        
         ListView listView =(ListView) findViewById(R.id.resultListListView);  
-        ListItemAdapter adapter = new ListItemAdapter(this,R.layout.row);
+        ListItemAdapter adapter = new ListItemAdapter(this,R.layout.row,rows);
         listView.setAdapter(adapter);
         
         

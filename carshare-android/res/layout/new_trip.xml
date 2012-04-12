@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/tripImageView"
+        style="@style/logo" />
+
+    <TextView
+        android:id="@+id/tripTextView0"
+        style="@style/nadpis"
+        android:text="TRIP" />
+
+    <ScrollView
+        android:id="@+id/tripScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/tripLinearLayout1"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tripTextView1"
+                style="@style/bold_text"
+                android:text="From : " />
+
+            <EditText
+                android:id="@+id/tripFrom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tripTextView2"
+                style="@style/bold_text"
+                android:text="To : " />
+
+            <EditText
+                android:id="@+id/tripTo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tripTextView3"
+                style="@style/bold_text"
+                android:text="Departure : " />
+
+            <EditText
+                android:id="@+id/tripDeparture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date" />
+            
+            <TextView
+                android:id="@+id/tripTextView4"
+                style="@style/bold_text"
+                android:text="Arrival : " />
+
+            <EditText
+                android:id="@+id/tripArrival"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date" />
+            
+            <TextView
+                android:id="@+id/tripTextView5"
+                style="@style/bold_text"
+                android:text="Total price : " />
+
+            <EditText
+                android:id="@+id/tripTotalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+                     
+            <TextView
+                android:id="@+id/tripTextView6"
+                style="@style/bold_text"
+                android:text="Available seats : " />
+
+            <EditText
+                android:id="@+id/tripAvailableSeats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+            
+            <TextView
+                android:id="@+id/tripTextView7"
+                style="@style/bold_text"
+                android:text="Total seats : " />
+
+            <EditText
+                android:id="@+id/tripTotalSeats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+            
+            <Button
+        		android:id="@+id/tripStopsBtn"
+        		android:layout_width="fill_parent"
+        		android:layout_height="wrap_content"
+        		android:layout_marginTop="10px"
+        		android:text="Create trip stop"
+        		android:textStyle="bold" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/tripLinearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        android:gravity="center_horizontal" >
+        <Button
+        	android:id="@+id/tripCreateBtn"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="Create"
+        	android:textStyle="bold" />
+        <Button
+        	android:id="@+id/tripCencelBtn"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="Cancel"
+        	android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

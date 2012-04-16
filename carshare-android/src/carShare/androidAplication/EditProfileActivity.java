@@ -139,7 +139,7 @@ public class EditProfileActivity extends Activity{
             	}
         		catch (Exception e)
         		{
-        			System.exit(1);
+        			ExitMsbox("Fatal Error!");
         		}
         	}
         });
@@ -159,6 +159,19 @@ public class EditProfileActivity extends Activity{
         dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int whichButton) {
         	EditProfileActivity.this.startActivity(new Intent(EditProfileActivity.this,MenuActivity.class));	
+        }});
+        dlgAlert.create().show();
+    }
+    
+    
+    public void ExitMsbox(String message)
+    {
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);  
+        dlgAlert.setTitle("Info"); 
+        dlgAlert.setMessage(message);
+        dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+        	System.exit(1);	
         }});
         dlgAlert.create().show();
     }

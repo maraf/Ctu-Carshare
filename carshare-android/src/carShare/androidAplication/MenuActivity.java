@@ -6,6 +6,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -63,9 +65,21 @@ public class MenuActivity extends Activity{
             	} 
             	catch (Exception e)
             	{
-            		System.exit(1);
+            		ExitMsbox("Fatal Error!");
             	}
             }
         });  
 	}
+	
+	public void ExitMsbox(String message)
+    {
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);  
+        dlgAlert.setTitle("Info"); 
+        dlgAlert.setMessage(message);
+        dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+        	System.exit(1);	
+        }});
+        dlgAlert.create().show();
+    }
 }

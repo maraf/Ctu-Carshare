@@ -18,6 +18,8 @@ import com.neptuo.service.io.AutoSerializer;
 import com.neptuo.service.io.XmlDeserializer;
 import com.neptuo.service.io.XmlSerializer;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -102,7 +104,7 @@ public class FilterActivity extends Activity{
             	} 
             	catch (Exception e)
             	{
-            		System.exit(1);
+            		ExitMsbox("Fatal Error!");
             	}
         	}
         });
@@ -111,6 +113,20 @@ public class FilterActivity extends Activity{
             public void onClick(View v) {
             	FilterActivity.this.startActivity(new Intent(FilterActivity.this,MenuActivity.class));
             }
-        });  
+        });
+        
+        
 	}
+	
+	public void ExitMsbox(String message)
+    {
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);  
+        dlgAlert.setTitle("Info"); 
+        dlgAlert.setMessage(message);
+        dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+        	System.exit(1);	
+        }});
+        dlgAlert.create().show();
+    }
 }

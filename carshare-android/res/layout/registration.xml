@@ -32,7 +32,7 @@
             <TextView
                 android:id="@+id/registrationTextView1"
                 style="@style/bold_text"
-                android:text="Phone number : " />
+                android:text="Phone number : *" />
 
             <EditText
                 android:id="@+id/registrationPhone"
@@ -43,7 +43,7 @@
             <TextView
                 android:id="@+id/registrationTextView2"
                 style="@style/bold_text"
-                android:text="Password : " />
+                android:text="Password : *" />
 
             <EditText
                 android:id="@+id/registrationPassword"
@@ -54,7 +54,7 @@
             <TextView
                 android:id="@+id/registrationTextView3"
                 style="@style/bold_text"
-                android:text="Password confirm : " />
+                android:text="Password confirm : *" />
 
             <EditText
                 android:id="@+id/registrationPasswordConfirm"
@@ -62,18 +62,12 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
 
-            <TextView
-            	android:id="@+id/registrationValidity"
-            	style="@style/bold_text"
-            	android:textSize="15dp"            
-            	android:layout_gravity="center_horizontal"
-            	android:textColor="#ffff0000"
-            	android:text="Invalid password confirm."/>
+         
             
 			<TextView
                 android:id="@+id/registrationTextView4"
                 style="@style/bold_text"
-                android:text="Email : " />
+                android:text="Email : *" />
 
             <EditText
                 android:id="@+id/registrationEmail"
@@ -84,7 +78,7 @@
 			<TextView
                 android:id="@+id/registrationTextView5"
                 style="@style/bold_text"
-                android:text="First name : " />
+                android:text="First name : *" />
 
 
             <EditText
@@ -97,7 +91,7 @@
 			<TextView
                 android:id="@+id/registrationTextView6"
                 style="@style/bold_text"
-                android:text="Last name : " />
+                android:text="Last name : *" />
 
 			
             <EditText
@@ -110,7 +104,7 @@
 			<TextView
                 android:id="@+id/registrationTextView7"
                 style="@style/bold_text"
-                android:text="Address : " />
+                android:text="Address : *" />
             
             <EditText
                 android:id="@+id/registrationAddress"

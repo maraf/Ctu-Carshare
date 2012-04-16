@@ -4,11 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
     android:orientation="vertical" >
-
-    <ImageView
-        android:id="@+id/tripImageView"
-        style="@style/logo" />
-
+    
     <TextView
         android:id="@+id/tripTextView0"
         style="@style/nadpis"

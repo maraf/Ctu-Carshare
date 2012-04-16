@@ -17,16 +17,17 @@ import com.neptuo.service.io.AutoSerializer;
 import com.neptuo.service.io.XmlSerializer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class RegistrationActivity extends Activity{
 
-	private TextView validity;
+	//private TextView validity;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,8 @@ public class RegistrationActivity extends Activity{
         setContentView(R.layout.registration);         
         Button registrationBtn = (Button) findViewById(R.id.registrationRegistrationBtn);
         Button cencelBtn = (Button) findViewById(R.id.registrationCencelBtn);
-        validity = (TextView) findViewById(R.id.registrationValidity);
-        validity.setHeight(0);
+        
+        
         registrationBtn.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
             	
@@ -48,6 +49,11 @@ public class RegistrationActivity extends Activity{
         		EditText address = (EditText) findViewById(R.id.registrationAddress);  
         		EditText car = (EditText) findViewById(R.id.registrationCarDescription);
         		
+        		if(phone.getText().toString().equals("")||email.getText().toString().equals("")||firstName.getText().toString().equals("")||lastName.getText().toString().equals("")||address.getText().toString().equals(""))
+        		{
+        			msbox("Please complete all required fields, identified *");
+        			return;
+        		}
         		
         		if (password.getText().toString().equals(passwordConfirm.getText().toString())&&!password.getText().toString().equals("")){
         			try 
@@ -59,7 +65,7 @@ public class RegistrationActivity extends Activity{
                 		registration.setFirstName(firstName.getText().toString());
                 		registration.setLastName(lastName.getText().toString());
                 		registration.setAddress(address.getText().toString());
-                		registration.setCarDescription(car.getText().toString());
+                		registration.setCarDescription(car.getText().toString());		
 
                 		XmlSerializer serializer = new XmlSerializer("carshare");
                 		AutoSerializer.factory("user-update", registration, serializer).serialize();
@@ -95,14 +101,16 @@ public class RegistrationActivity extends Activity{
                     			RegistrationActivity.this.startActivity(new Intent(RegistrationActivity.this,MenuActivity.class));
                         	}
                 		}
+                		else
+                			msbox("Connection problem!");
         			} 
         			catch (Exception e)
         			{
-        				System.exit(1);
+        				ExitMsbox("Fatal Error!");
         			}
         		}
         		else
-        			validity.setHeight(20);
+        			msbox("Invalid password!");
             }
         });
         
@@ -112,4 +120,26 @@ public class RegistrationActivity extends Activity{
             }
         });  
 	}
+	
+	   
+		public void msbox(String message)
+	    {
+	        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);  
+	        dlgAlert.setTitle("Info"); 
+	        dlgAlert.setMessage(message);
+	        dlgAlert.setPositiveButton("OK",null);
+	        dlgAlert.create().show();
+	    }
+	
+		public void ExitMsbox(String message)
+	    {
+	        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);  
+	        dlgAlert.setTitle("Info"); 
+	        dlgAlert.setMessage(message);
+	        dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int whichButton) {
+	        	System.exit(1);	
+	        }});
+	        dlgAlert.create().show();
+	    }
 }

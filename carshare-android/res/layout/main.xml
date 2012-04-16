@@ -57,14 +57,6 @@
                 android:inputType="textPassword" />
         </TableRow>
 
-       <TextView
-            android:id="@+id/mainValidity"
-            style="@style/bold_text"
-            android:textSize="15dp"            
-            android:gravity="center_horizontal"
-            android:textColor="#ffff0000"
-            android:text="Invalid phone number or password."/>
-
       
         <TableRow
             android:id="@+id/mainTableRow3"

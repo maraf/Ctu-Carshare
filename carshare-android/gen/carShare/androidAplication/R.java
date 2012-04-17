@@ -21,6 +21,7 @@ public final class R {
         public static final int boxPlace=0x7f060001;
         public static final int boxTextView1=0x7f060000;
         public static final int boxTextView2=0x7f060002;
+        public static final int checkBox1=0x7f060087;
         public static final int editProfileAddress=0x7f060018;
         public static final int editProfileCarDescription=0x7f06001a;
         public static final int editProfileCencelBtn=0x7f06001d;
@@ -79,6 +80,8 @@ public final class R {
         public static final int menuSearchBtn=0x7f06003d;
         public static final int menuTextView0=0x7f06003a;
         public static final int menuUpdateBtn=0x7f06003f;
+        public static final int progressBar1=0x7f06008b;
+        public static final int radioButton1=0x7f060089;
         public static final int registrationAddress=0x7f060067;
         public static final int registrationCarDescription=0x7f060069;
         public static final int registrationCencelBtn=0x7f06006b;
@@ -126,6 +129,10 @@ public final class R {
         public static final int rowTo=0x7f06007e;
         public static final int rowTotalPrice=0x7f060081;
         public static final int rowTotalSeats=0x7f060083;
+        public static final int tab1=0x7f060086;
+        public static final int tab2=0x7f060088;
+        public static final int tab3=0x7f06008a;
+        public static final int tabhost=0x7f060085;
         public static final int tripArrival=0x7f06004b;
         public static final int tripAvailableSeats=0x7f06004f;
         public static final int tripCencelBtn=0x7f060055;
@@ -151,14 +158,16 @@ public final class R {
     }
     public static final class layout {
         public static final int box=0x7f030000;
-        public static final int edit_profile=0x7f030001;
-        public static final int filter=0x7f030002;
-        public static final int main=0x7f030003;
-        public static final int menu=0x7f030004;
-        public static final int new_trip=0x7f030005;
-        public static final int registration=0x7f030006;
-        public static final int result_list=0x7f030007;
-        public static final int row=0x7f030008;
+        public static final int content=0x7f030001;
+        public static final int edit_profile=0x7f030002;
+        public static final int filter=0x7f030003;
+        public static final int main=0x7f030004;
+        public static final int menu=0x7f030005;
+        public static final int new_trip=0x7f030006;
+        public static final int registration=0x7f030007;
+        public static final int result_list=0x7f030008;
+        public static final int row=0x7f030009;
+        public static final int trip_detail=0x7f03000a;
     }
     public static final class string {
         public static final int app_name=0x7f040000;

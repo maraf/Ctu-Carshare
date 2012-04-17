@@ -6,6 +6,7 @@
 package com.carshare.service.storage;
 
 import com.carshare.domain.dto.UserMessage;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -14,7 +15,7 @@ import javax.persistence.*;
  * @author Mara
  */
 @Entity
-public class UserMessageEntity {
+public class UserMessageEntity implements Serializable {
     private String id;
 
     private String userId;
@@ -22,6 +23,7 @@ public class UserMessageEntity {
     private String subject;
     private String content;
     private Date sent;
+    private boolean isRead;
 
     public UserMessageEntity() {
     }
@@ -85,7 +87,15 @@ public class UserMessageEntity {
         this.userId = userId;
     }
 
+    public boolean getIsRead() {
+        return isRead;
+    }
+
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
+    }
+
     public UserMessage asUserMessage() {
-        return new UserMessage(fromUserId, subject, content, sent);
+        return new UserMessage(id, fromUserId, subject, content, sent, isRead);
     }
 }

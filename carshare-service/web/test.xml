@@ -61,6 +61,32 @@
     </stops>
 </new-trip>
 
+<carshare generated="1324326977139">
+    <new-trip>
+        <to>2</to>
+        <stops>
+            <new-trip>
+                <arrival>2011-12-19 21:36:17.127</arrival>
+                <place>3</place>
+            </new-trip>
+            <new-trip>
+                <arrival>2011-12-19 21:36:17.127</arrival>
+                <place>4</place>
+            </new-trip>
+            <new-trip>
+                <arrival>2011-12-19 21:36:17.127</arrival>
+                <place>5</place>
+            </new-trip>
+        </stops>
+        <total-seats>5</total-seats>
+        <total-price>5000</total-price>
+        <departure>2011-12-19 21:36:17.127</departure>
+        <arrival>2011-12-19 21:36:17.127</arrival>
+        <from>1</from>
+        <available-seats>4</available-seats>
+    </new-trip>
+</carshare>
+
 
 
 

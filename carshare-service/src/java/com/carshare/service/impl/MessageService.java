@@ -70,6 +70,17 @@ public class MessageService {
         return new CollectionResult<UserMessage>("user-messages", result);
     }
 
+    public void markAsRead(EntityManager em, UserEntity current, @RequestInput("user-message") UserMessage message) throws ServiceException {
+        if(message == null || message.getId() == null)
+            throw new NullFieldException("id");
+
+        UserMessageEntity entity = em.find(UserMessageEntity.class, message.getId());
+        if(entity != null) {
+            entity.setIsRead(true);
+            em.persist(entity);
+        }
+    }
+
     @ServiceMethod(name="test")
     public EntityResult<UserMessage> test(UserEntity current) {
         return new EntityResult<UserMessage>(new UserMessage(current.getId(), "Hello Message!", "Hey, how are you?", new Date()));

@@ -70,6 +70,7 @@ public class MessageService {
         return new CollectionResult<UserMessage>("user-messages", result);
     }
 
+    @ServiceMethod(name="mark-as-read")
     public void markAsRead(EntityManager em, UserEntity current, @RequestInput("user-message") UserMessage message) throws ServiceException {
         if(message == null || message.getId() == null)
             throw new NullFieldException("id");

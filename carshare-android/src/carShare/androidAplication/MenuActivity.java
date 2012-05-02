@@ -1,10 +1,25 @@
 package carShare.androidAplication;
 
+import java.io.InputStream;
+import java.util.Collection;
+
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpPost;
+
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
+
+
+
+import com.carshare.domain.dto.UserMessage;
+import com.neptuo.service.io.AutoDeserializer;
+import com.neptuo.service.io.AutoDeserializerItem;
+
+import com.neptuo.service.io.XmlDeserializer;
+
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -19,6 +34,44 @@ public class MenuActivity extends Activity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);   
         setContentView(R.layout.menu);         
+        
+     	try 
+    	{       	
+    		
+    	//	messageFilter.
+    		
+    	//	XmlSerializer serializer = new XmlSerializer("carshare");
+        //	AutoSerializer.factory("message-filter",  messageFilter, serializer).serialize();
+        //	String output = serializer.getResult();
+    		
+            DefaultHttpClient httpPostclient = new DefaultHttpClient();
+            HttpConnectionParams.setConnectionTimeout(httpPostclient.getParams(), 10000);
+            HttpPost httpPostRequest = new HttpPost(Resources.getServer()+"/service/message");
+            httpPostRequest.setHeader("Accept", "application/xml");
+            httpPostRequest.setHeader("Content-type", "application/xml");
+            httpPostRequest.addHeader("AuthToken", Resources.getIdUser());
+          //  httpPostRequest.setEntity(new StringEntity(output,HTTP.UTF_8));
+            HttpResponse responsePost = (HttpResponse) httpPostclient.execute(httpPostRequest);
+            
+            if (responsePost.getStatusLine().getStatusCode()==HttpStatus.SC_OK)
+            {
+            	
+            	 HttpEntity entity = responsePost.getEntity();
+                 if (entity != null){
+                 	InputStream is = entity.getContent();
+                 	XmlDeserializer deserializer = new XmlDeserializer();
+                 	AutoDeserializerItem messageItem = new AutoDeserializerItem("user-messages", Collection.class, UserMessage.class);
+                 	AutoDeserializer.factory(deserializer, is, messageItem).deserialize();
+                 	Collection<UserMessage> messages = (Collection<UserMessage>) messageItem.getCollection();
+                 	
+                 }       	
+            }
+    	}
+    	catch (Exception e)
+    	{
+    		ExitMsbox("Fatal Error!");
+    	}
+        
         
         if (Resources.getIdUser()==null)
     		MenuActivity.this.startActivity(new Intent(MenuActivity.this,CarShareAndroidAplicationActivity.class));

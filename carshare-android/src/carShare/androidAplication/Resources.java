@@ -2,12 +2,20 @@ package carShare.androidAplication;
 
 import java.util.Collection;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.carshare.domain.dto.TripRow;
 
 public class Resources {
 
 	private static String idUser;
 	private static Collection<TripRow> tripRows;
+	
+	public static void NotificationMessage(Context context, CharSequence text){
+	        Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
+	        toast.show();
+	}
 	
 	public static Collection<TripRow> getTripRows() {
 		return tripRows;

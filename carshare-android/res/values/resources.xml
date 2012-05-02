@@ -23,4 +23,5 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">10dip</item>
     </style>
+    
 </resources>

@@ -31,7 +31,7 @@ public class CarShareAndroidAplicationActivity extends Activity {
         Resources.setIdUser(null);
         Button loginBtn = (Button) findViewById(R.id.mainLoginBtn); 
         Button registrationBtn = (Button) findViewById(R.id.mainRegistrationBtn); 
-        
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
             	EditText phone = (EditText) findViewById(R.id.mainPhone);  

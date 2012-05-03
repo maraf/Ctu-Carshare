@@ -53,10 +53,16 @@ public class MessageService {
                 .setParameter("userId", current.getId())
                 .getResultList();
         } else {
-            Query q = em.createQuery("select m from UserMessageEntity m where m.userId = :userId" + (filter.getFromUserId() != null ? " and m.fromUserId = :fromUserId" : ""));
+            Query q = em.createQuery("select m from UserMessageEntity m where m.userId = :userId" 
+                + (filter.getFromUserId() != null ? " and m.fromUserId = :fromUserId" : "")
+                + (filter.getUnOnlyRead() ? " and m.isRead = :isRead" : "")
+            );
             q = q.setParameter("userId", current.getId());
             if(filter.getFromUserId() != null) {
                 q = q.setParameter("fromUserId", filter.getFromUserId());
+            }
+            if(filter.getUnOnlyRead()) {
+                q = q.setParameter("isRead", true);
             }
             if(filter.getCount() > 0) {
                 q = q.setMaxResults(filter.getCount());

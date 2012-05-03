@@ -97,7 +97,7 @@ $("#getMyMessages").click(function() {
     $("#method").val("");
 });
 $("#filterMyMessages").click(function() {
-    $("#params").val("<message-filter>\n  <count>10</count>\n  <from-user-id>SOME_USER_ID</from-user-id>\n</message-filter>");
+    $("#params").val("<message-filter>\n  <count>10</count>\n  <only-unread>false</only-unread>\n  <from-user-id>SOME_USER_ID</from-user-id>\n</message-filter>");
     $("#url").val("/service/message");
     $("#method").val("");
 });

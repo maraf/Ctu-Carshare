@@ -7,6 +7,7 @@ import com.neptuo.service.io.annotation.*;
 public class MessageFilter implements java.io.Serializable {
     private int count;
     private String fromUserId;
+    private boolean onlyUnRead;
 
     public MessageFilter() {
     }
@@ -35,4 +36,15 @@ public class MessageFilter implements java.io.Serializable {
     public void setFromUserId(String fromUserId) {
         this.fromUserId = fromUserId;
     }
+
+    @Serializable(name="only-unread")
+    public boolean getUnOnlyRead() {
+        return onlyUnRead;
+    }
+
+    @Deserializable(name="only-unread")
+    public void setUnOnlyRead(boolean onlyUnRead) {
+        this.onlyUnRead = onlyUnRead;
+    }
+
 }

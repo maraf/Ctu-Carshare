@@ -4,4 +4,5 @@
     <version>1</version>
     <ssl-enabled>true</ssl-enabled>
     <sessions-enabled>true</sessions-enabled>
+    <threadsafe>true</threadsafe>
 </appengine-web-app>

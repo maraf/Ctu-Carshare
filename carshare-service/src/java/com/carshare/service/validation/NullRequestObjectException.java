@@ -11,9 +11,9 @@ import com.neptuo.service.ServiceException;
  *
  * @author Mara
  */
-public class NullRequstObjectException extends ServiceException {
+public class NullRequestObjectException extends ServiceException {
 
-    public NullRequstObjectException(String message) {
+    public NullRequestObjectException(String message) {
         super(message);
     }
 }

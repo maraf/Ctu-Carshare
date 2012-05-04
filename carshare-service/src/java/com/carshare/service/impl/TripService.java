@@ -50,7 +50,7 @@ public class TripService {
     @ServiceMethod(name="create")
     public EntityResult<TripRow> create(@RequestInput NewTrip trip, EntityManager em, UserEntity current) throws ServiceException {
         if(trip == null) {
-            throw new NullRequstObjectException("trip");
+            throw new NullRequestObjectException("trip");
         }
         if(StringUtils.isNullOrEmpty(trip.getFrom())) {
             throw new NullFieldException("from");
@@ -85,7 +85,7 @@ public class TripService {
     @ServiceMethod(name="request-user-to-trip")
     public EntityResult<TripUserRequest> requestUserToTrip(@RequestInput TripUserRequest request, EntityManager em, UserEntity current) throws ServiceException {
         if(request == null) {
-            throw new NullRequstObjectException("trip-user-request");
+            throw new NullRequestObjectException("trip-user-request");
         }
         if(StringUtils.isNullOrEmpty(request.getTripId())) {
             throw new NullFieldException("trip-id");
@@ -106,7 +106,7 @@ public class TripService {
     @ServiceMethod(name="confirm-user-in-trip")
     public EntityResult<TripUserRequest> confirmUserInTrip(@RequestInput TripUserRequest request, EntityManager em, UserEntity current) throws ServiceException {
         if(request == null) {
-            throw new NullRequstObjectException("trip-user-request");
+            throw new NullRequestObjectException("trip-user-request");
         }
         if(StringUtils.isNullOrEmpty(request.getUserId())) {
             throw new NullFieldException("user-id");
@@ -137,7 +137,7 @@ public class TripService {
     @ServiceMethod(name="remove-user-from-trip")
     public EntityResult<TripUserRequest> removeUserFromTrip(@RequestInput TripUserRequest request, EntityManager em, UserEntity current) throws ServiceException {
         if(request == null) {
-            throw new NullRequstObjectException("trip-user-request");
+            throw new NullRequestObjectException("trip-user-request");
         }
         if(StringUtils.isNullOrEmpty(request.getTripId())) {
             throw new NullFieldException("trip-id");
@@ -164,5 +164,24 @@ public class TripService {
         em.remove(entity);
 
         return new EntityResult<TripUserRequest>(request);
+    }
+
+    @ServiceMethod(name="users-in-trip")
+    public CollectionResult<User> getUsersInTrip(@RequestInput UsersInTripFilter filter, EntityManager em, UserEntity current) throws ServiceException {
+        if(filter == null) {
+            throw new NullRequestObjectException("users-in-trip-filter");
+        }
+
+        Query q = em.createQuery("select * from TripUserEntity tue where tue.tripId = :tripId");
+        q.setParameter("tripId", filter.getTripId());
+
+        List<User> result = new ArrayList<User>();
+        for (TripUserEntity item : (List<TripUserEntity>)q.getResultList()) {
+            if(!filter.getWithoutRequests() || (filter.getWithoutRequests() && item.getStatus() == TripUserStatus.CONFIRMED)) {
+                result.add(em.find(UserEntity.class, item.getUserId()).asUser());
+            }
+        }
+
+        return new CollectionResult<User>("users-in-trip", null);
     }
 }

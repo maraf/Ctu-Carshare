@@ -36,6 +36,11 @@ and open the template in the editor.
         <strong>Trip: </strong>
         <button id="filter">Filter trips</button>
         <button id="create">Create new trip</button>
+        <button id="createTripRequest">Apply for a seat in trip</button>
+        |
+        <button id="usersInTrip">Get requests [DRIVE ONLY]</button>
+        <button id="confirmTripRequest">Confirm request [DRIVE ONLY]</button>
+        <button id="rejectTripRequest">Reject request [DRIVE ONLY]</button>
         <br />
 
         <strong>Message: </strong>
@@ -114,6 +119,26 @@ $("#filter").click(function() {
 $("#create").click(function() {
     $("#params").val("<new-trip>\n    <from>Louny</from>\n    <to>Praha</to>\n    <departure>2011-12-07</departure>\n    <arrival>2011-12-07</arrival>\n    <total-price>500</total-price>\n    <available-seats>4</available-seats>\n    <total-seats>5</total-seats>\n    <stops>\n        <trip-stop>\n            <place>Roudnice</place>\n            <arrival>2011-12-07</arrival>\n        </trip-stop>\n    </stops>\n</new-trip>");
     $("#url").val("/service/trip/create");
+    $("#method").val("");
+});
+$("#createTripRequest").click(function() {
+    $("#params").val("<trip-user-request>\n    <trip-id>TRIP_ID</trip-id>\n</trip-user-request>");
+    $("#url").val("/service/trip/request-user-to-trip");
+    $("#method").val("");
+});
+$("#confirmTripRequest").click(function() {
+    $("#params").val("<trip-user-request>\n    <trip-id>TRIP_ID</trip-id>\n    <user-id>USER_ID</user-id>\n</trip-user-request>");
+    $("#url").val("/service/trip/confirm-user-in-trip");
+    $("#method").val("");
+});
+$("#rejectTripRequest").click(function() {
+    $("#params").val("<trip-user-request>\n    <trip-id>TRIP_ID</trip-id>\n    <user-id>USER_ID</user-id>\n</trip-user-request>");
+    $("#url").val("/service/trip/remove-user-from-trip");
+    $("#method").val("");
+});
+$("#usersInTrip").click(function() {
+    $("#params").val("<users-in-trip-filter>\n    <without-requests>OPTIONAL_TRUE_FALSE</without-requests>\n    <trip-id>TRIP_ID</trip-id>\n</users-in-trip-filter>");
+    $("#url").val("/service/trip/users-in-trip");
     $("#method").val("");
 });
 

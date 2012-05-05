@@ -90,7 +90,7 @@ public class TripService {
         if(StringUtils.isNullOrEmpty(request.getTripId())) {
             throw new NullFieldException("trip-id");
         }
-        Query q = em.createQuery("select * from TripUserEntity tue where tue.userId = :userId and tue.tripId = :tripId");
+        Query q = em.createQuery("select tue from TripUserEntity tue where tue.userId = :userId and tue.tripId = :tripId");
         q.setParameter("userId", current.getId());
         q.setParameter("tripId", request.getTripId());
         if(q.getResultList().size() > 0) {
@@ -98,7 +98,9 @@ public class TripService {
         }
 
         TripUserEntity entity = new TripUserEntity(request.getTripId(), current.getId());
+        entity.setId(HashHelper.SHA1(PublicHelper.random()));
         em.persist(entity);
+        //TODO: Send notification to driver user.
 
         return new EntityResult<TripUserRequest>(request);
     }
@@ -119,7 +121,7 @@ public class TripService {
             throw new OnlyDriverCanModifyException();
         }
 
-        Query q = em.createQuery("select * from TripUserEntity tue where tue.userId = :userId and tue.tripId = :tripId");
+        Query q = em.createQuery("select tue from TripUserEntity tue where tue.userId = :userId and tue.tripId = :tripId");
         q.setParameter("userId", request.getUserId());
         q.setParameter("tripId", request.getTripId());
         List<TripUserEntity> result = q.getResultList();
@@ -130,6 +132,10 @@ public class TripService {
         TripUserEntity entity = result.get(0);
         entity.setStatus(TripUserStatus.CONFIRMED);
         em.persist(em.merge(entity));
+
+        trip.setAvailableSeats(trip.getAvailableSeats() - 1);
+        em.persist(em.merge(trip));
+        //TODO: Send notification to target user.
 
         return new EntityResult<TripUserRequest>(request);
     }
@@ -143,7 +149,7 @@ public class TripService {
             throw new NullFieldException("trip-id");
         }
         
-        Query q = em.createQuery("select * from TripUserEntity tue where tue.userId = :userId and tue.tripId = :tripId");
+        Query q = em.createQuery("select tue from TripUserEntity tue where tue.userId = :userId and tue.tripId = :tripId");
         if(!StringUtils.isNullOrEmpty(request.getUserId())) {
             TripEntity trip = em.find(TripEntity.class, request.getTripId());
             if(!current.getId().equals(trip.getDriverId())) {
@@ -161,27 +167,39 @@ public class TripService {
         }
 
         TripUserEntity entity = result.get(0);
+
+        if(entity.getStatus() == TripUserStatus.CONFIRMED) {
+            TripEntity trip = em.find(TripEntity.class, request.getTripId());
+            trip.setAvailableSeats(trip.getAvailableSeats() + 1);
+            em.persist(em.merge(trip));
+        }
         em.remove(entity);
+        //TODO: Send notification to target user.
 
         return new EntityResult<TripUserRequest>(request);
     }
 
     @ServiceMethod(name="users-in-trip")
-    public CollectionResult<User> getUsersInTrip(@RequestInput UsersInTripFilter filter, EntityManager em, UserEntity current) throws ServiceException {
+    public CollectionResult<UserInTrip> getUsersInTrip(@RequestInput UsersInTripFilter filter, EntityManager em, UserEntity current) throws ServiceException {
         if(filter == null) {
             throw new NullRequestObjectException("users-in-trip-filter");
         }
 
-        Query q = em.createQuery("select * from TripUserEntity tue where tue.tripId = :tripId");
+        TripEntity trip = em.find(TripEntity.class, filter.getTripId());
+        if(trip == null || !trip.getDriverId().equals(current.getId())) {
+            throw new OnlyDriverCanModifyException();
+        }
+
+        Query q = em.createQuery("select tue from TripUserEntity tue where tue.tripId = :tripId");
         q.setParameter("tripId", filter.getTripId());
 
-        List<User> result = new ArrayList<User>();
+        List<UserInTrip> result = new ArrayList<UserInTrip>();
         for (TripUserEntity item : (List<TripUserEntity>)q.getResultList()) {
             if(!filter.getWithoutRequests() || (filter.getWithoutRequests() && item.getStatus() == TripUserStatus.CONFIRMED)) {
-                result.add(em.find(UserEntity.class, item.getUserId()).asUser());
+                result.add(em.find(UserEntity.class, item.getUserId()).asUserInTrip(item.getStatus()));
             }
         }
 
-        return new CollectionResult<User>("users-in-trip", null);
+        return new CollectionResult<UserInTrip>("users-in-trip", result);
     }
 }

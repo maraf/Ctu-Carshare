@@ -89,7 +89,16 @@
 
 
 
+<trip-user-request>
+    <trip-id></trip-id>
+    <user-id></user-id>
+</trip-user-request>
 
+
+<users-in-trip-filter>
+    <without-requests>OPTIONAL_TRUE_FALSE</without-requests>
+    <trip-id>TRIP_ID</trip-id>
+</users-in-trip-filter>
 
 
 

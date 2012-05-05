@@ -146,6 +146,10 @@ public class UserEntity implements Serializable {
         return new User(id, email, firstName, lastName, phoneNumber, address, carDescription, registrated, certified);
     }
 
+    public UserInTrip asUserInTrip(TripUserStatus status) {
+        return new UserInTrip(id, email, firstName, lastName, phoneNumber, address, carDescription, registrated, certified, status);
+    }
+
     public UserUpdate asUserUpdate() {
         return new UserUpdate(id, email, firstName, lastName, phoneNumber, address, carDescription, registrated, certified, password);
     }

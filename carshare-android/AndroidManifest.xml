@@ -12,7 +12,7 @@
         android:label="@string/app_name" >
         <activity
             android:label="@string/app_name"
-            android:name=".CarShareAndroidAplicationActivity" >
+            android:name=".ResultActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,6 +47,14 @@
         <activity
             android:label="@string/app_name"
             android:name=".TripDetailActivity" >
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".MessageActivity" >
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".MyMessageActivity" >
         </activity>
     </application>
     

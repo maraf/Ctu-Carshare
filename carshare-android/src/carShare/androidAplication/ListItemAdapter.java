@@ -42,7 +42,8 @@ class ListItemAdapter extends ArrayAdapter<TripRow>
 			TextView to = (TextView) v.findViewById(R.id.rowTo);    
 			TextView totalPrice = (TextView) v.findViewById(R.id.rowTotalPrice);  
 			TextView totalSeats = (TextView) v.findViewById(R.id.rowTotalSeats); 
-
+			
+			
 			if (from!=null)
 				if (trip.getFrom()!=null)
 					from.setText(trip.getFrom());            

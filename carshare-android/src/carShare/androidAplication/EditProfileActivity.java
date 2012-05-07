@@ -48,7 +48,6 @@ public class EditProfileActivity extends Activity{
         validity = (TextView) findViewById(R.id.editProfileValidity);
     	validity.setHeight(0);
     	
-        
         if (Resources.getIdUser()==null)
     		EditProfileActivity.this.startActivity(new Intent(EditProfileActivity.this,CarShareAndroidAplicationActivity.class));
         

@@ -38,32 +38,32 @@ public class MenuActivity extends Activity{
      	try 
     	{       	
     		
-    	//	messageFilter.
-    		
-    	//	XmlSerializer serializer = new XmlSerializer("carshare");
-        //	AutoSerializer.factory("message-filter",  messageFilter, serializer).serialize();
-        //	String output = serializer.getResult();
-    		
             DefaultHttpClient httpPostclient = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(httpPostclient.getParams(), 10000);
             HttpPost httpPostRequest = new HttpPost(Resources.getServer()+"/service/message");
             httpPostRequest.setHeader("Accept", "application/xml");
             httpPostRequest.setHeader("Content-type", "application/xml");
             httpPostRequest.addHeader("AuthToken", Resources.getIdUser());
-          //  httpPostRequest.setEntity(new StringEntity(output,HTTP.UTF_8));
             HttpResponse responsePost = (HttpResponse) httpPostclient.execute(httpPostRequest);
             
             if (responsePost.getStatusLine().getStatusCode()==HttpStatus.SC_OK)
             {
-            	
             	 HttpEntity entity = responsePost.getEntity();
                  if (entity != null){
                  	InputStream is = entity.getContent();
                  	XmlDeserializer deserializer = new XmlDeserializer();
                  	AutoDeserializerItem messageItem = new AutoDeserializerItem("user-messages", Collection.class, UserMessage.class);
                  	AutoDeserializer.factory(deserializer, is, messageItem).deserialize();
-                 	Collection<UserMessage> messages = (Collection<UserMessage>) messageItem.getCollection();
+                 	Resources.messages = (Collection<UserMessage>) messageItem.getCollection();
+                 	UserMessage [] m = Resources.getMessageArray();
                  	
+                 	for (int i= 0 ; i<Resources.messages.size();i++){
+                 		UserMessage me = m[i];
+                 		if (!me.isIsRead()){
+                 			Resources.NotificationMessage(getApplicationContext(), "You have new message!");
+                 			break;
+                 		}
+                 	}
                  }       	
             }
     	}
@@ -79,13 +79,23 @@ public class MenuActivity extends Activity{
         Button searchBtn = (Button) findViewById(R.id.menuSearchBtn);
         Button createBtn = (Button) findViewById(R.id.menuCreateBtn);
         Button updateBtn = (Button) findViewById(R.id.menuUpdateBtn);
+        Button messageBtn = (Button) findViewById(R.id.menuMessageBtn); 
         Button logoutBtn = (Button) findViewById(R.id.menuLogoutBtn);
+        
         
         searchBtn.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		MenuActivity.this.startActivity(new Intent(MenuActivity.this,FilterActivity.class));
         	}
         });
+        
+
+        messageBtn.setOnClickListener(new View.OnClickListener() {
+        	public void onClick(View v) {
+        		MenuActivity.this.startActivity(new Intent(MenuActivity.this,MyMessagesActivity.class));
+        	}
+        });
+        
         
         createBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

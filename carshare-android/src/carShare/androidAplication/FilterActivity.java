@@ -114,8 +114,6 @@ public class FilterActivity extends Activity{
             	FilterActivity.this.startActivity(new Intent(FilterActivity.this,MenuActivity.class));
             }
         });
-        
-        
 	}
 	
 	public void ExitMsbox(String message)

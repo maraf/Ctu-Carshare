@@ -12,6 +12,7 @@ import com.carshare.domain.dto.UserMessage;
 
 public class Resources {
 
+	public static UserMessage selectedMessage;
 	private static String idUser;
 	private static Collection<TripRow> tripRows;
 	private static Collection<UserInTrip> passangerRows;

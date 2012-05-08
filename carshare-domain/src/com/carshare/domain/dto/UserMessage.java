@@ -13,6 +13,7 @@ public class UserMessage implements java.io.Serializable {
     private String content;
     private Date sent;
     private boolean isRead;
+    private String tripId;
 
     public UserMessage() {
     }
@@ -28,6 +29,16 @@ public class UserMessage implements java.io.Serializable {
         this(userId, subject, content, sent);
         this.id = id;
         this.isRead = isRead;
+    }
+
+    public UserMessage(String id, String userId, String subject, String content, Date sent, boolean isRead, String tripId) {
+        this.id = id;
+        this.userId = userId;
+        this.subject = subject;
+        this.content = content;
+        this.sent = sent;
+        this.isRead = isRead;
+        this.tripId = tripId;
     }
 
     @Serializable(name="id")
@@ -88,5 +99,15 @@ public class UserMessage implements java.io.Serializable {
     @Deserializable(name="is-read")
     public void setIsRead(boolean isRead) {
         this.isRead = isRead;
+    }
+
+    @Serializable(name="trip-id")
+    public String getTripId() {
+        return tripId;
+    }
+
+    @Deserializable(name="trip-id")
+    public void setTripId(String tripId) {
+        this.tripId = tripId;
     }
 }

@@ -24,6 +24,7 @@ public class UserMessageEntity implements Serializable {
     private String content;
     private Date sent;
     private boolean isRead;
+    private String tripId;
 
     public UserMessageEntity() {
     }
@@ -34,6 +35,7 @@ public class UserMessageEntity implements Serializable {
         subject = userMessage.getSubject();
         content = userMessage.getContent();
         sent = userMessage.getSent();
+        tripId = userMessage.getTripId();
     }
 
     @Id
@@ -95,7 +97,15 @@ public class UserMessageEntity implements Serializable {
         this.isRead = isRead;
     }
 
+    public String getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(String tripId) {
+        this.tripId = tripId;
+    }
+
     public UserMessage asUserMessage() {
-        return new UserMessage(id, fromUserId, subject, content, sent, isRead);
+        return new UserMessage(id, fromUserId, subject, content, sent, isRead, tripId);
     }
 }
